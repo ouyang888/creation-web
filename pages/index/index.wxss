@@ -1,21 +1,70 @@
 /**index.wxss**/
-.userinfo {
+.home{
   display: flex;
-  flex-direction: column;
-  align-items: center;
+}
+.home .left-tab{
+  width: 100px;
+  height: 100vh;
+  background-color: #F8F9FB;
+}
+.home .left-tab .item-tab{
+  position: relative;
+  height: 120rpx;
+  text-align: center;
+  line-height: 120rpx;
+  color: #666666;
+  font-size: 24rpx;
+  font-family: SourceHanSansCN-Regular;
+}
+.home .left-tab .item-tab.cur{
+  background-color: #fff;
+  color: #3490FF;
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.home .left-tab .item-tab .cur-line{
+  position: absolute;
+  left: 0;
+  width:6rpx;
+  height:30rpx;
+  top: 45rpx;
+  border-radius:0 50% 50% 0;
+  background: #3490FF;
 }
 
-.userinfo-nickname {
-  color: #aaa;
+.home .item-product{
+  font-family:Source Han Sans CN;
+  border-bottom: 1px solid #E4E9F0;
+}
+.home .item-product .title{
+  display: flex;
+  justify-content: space-between;
+  height: 120rpx;
+  line-height: 120rpx;
+  font-size: 28rpx;
+  padding: 0 40rpx;
+  box-sizing: border-box;
 }
 
-.usermotto {
-  margin-top: 200px;
+.home .item-product .content{
+  display: flex;
+  padding: 0 40rpx 40rpx 40rpx;
+}
+.home .item-product .content .pic{
+  width:160rpx;
+  height:160rpx;
+  border-radius:10px;
+  background: #E4E9F0;
+}
+
+.home .item-product .content .text-detail .text{
+  color: #2A2A2A;
+  font-size:32rpx;
+  font-weight:500;
+}
+
+.home .lower-body{
+  width: 100vh;
+  position: fixed;
+  bottom: 0;
+  background: #3490FF;
 }
