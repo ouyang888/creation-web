@@ -29,8 +29,8 @@
   left: 0;
   width: 6rpx;
   height: 30rpx;
-  top: 45rpx;
-  border-radius: 0 50% 50% 0;
+  top: 37rpx;
+  border-radius: 0 30% 30% 0;
   background: #3490FF;
 }
 
