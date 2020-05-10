@@ -1,0 +1,103 @@
+.topBgSize {
+  height: 350rpx;
+  background-size: 100%;
+}
+
+.headImg image {
+  width: 146rpx;
+  height: 146rpx;
+  border-radius: 50%;
+}
+
+.headBox {
+  display: flex;
+  align-items: center;
+  padding-left: 30rpx;
+  padding-top: 80rpx;
+}
+
+.userName {
+  font-size: 40rpx;
+  font-family: Source Han Sans CN;
+  font-weight: bold;
+  color: #fff;
+}
+
+.phone {
+  color: #a4bfdd;
+  font-size: 28rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  margin-top: 20rpx;
+}
+
+.middleBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 30rpx 30rpx;
+  background: #fff;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 7rpx 27rpx 0rpx rgba(0, 0, 0, 0.05);
+  border-radius: 10rpx;
+  position: relative;
+  top: -20rpx;
+}
+
+.middleBox image {
+  height: 130rpx;
+  width: 330rpx;
+  padding-top: 30rpx;
+}
+
+.bottomBox {
+  width: 97%;
+  margin: 20rpx auto;
+  background: #fff;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 7rpx 27rpx 0rpx rgba(0, 0, 0, 0.05);
+  border-radius: 10rpx;
+  margin-top: 0;
+}
+
+.title {
+  color: #2a2a2a;
+  font-size: 32rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  padding: 30rpx;
+}
+
+.subtitleBox {
+  display: flex;
+  align-items: center;
+  color: #999;
+  font-size: 24rpx;
+  padding: 0 30rpx 30rpx;
+}
+
+.phoneImg image {
+  width: 24rpx;
+  height: 24rpx;
+}
+
+.phoneImg {
+  padding-left: 30rpx;
+  display: flex;
+  align-items: center;
+}
+
+.phoneImg text {
+  padding-left: 10rpx;
+}
+
+.bottomFont {
+  color: #ccc;
+  font-size: 24rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  text-align: center;
+  padding-bottom: 90rpx;
+  padding-top: 90rpx;
+}

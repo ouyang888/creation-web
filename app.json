@@ -1,6 +1,8 @@
 {
   "pages":[
-    "pages/index/index"
+    "pages/my/my",
+    "pages/index/index",
+    "pages/login/login"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -9,5 +11,24 @@
     "navigationBarTextStyle":"black"
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "color": "#a9b7b7",
+    "selectedColor": "#3490ff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "selectedIconPath": "images/changeHome.png",
+        "iconPath": "images/home.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "selectedIconPath": "images/changeMy.png",
+        "iconPath": "images/my.png",
+        "pagePath": "pages/my/my",
+        "text": "我的"
+      }
+    ]
+  }
 }

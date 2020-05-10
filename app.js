@@ -1,11 +1,10 @@
 //app.js
 App({
-  onLaunch: function () {
+  onLoad :function () {
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
     // 登录
     wx.login({
       success: res => {
@@ -70,5 +69,9 @@ App({
         console.log(error)
       }
     })
+  },
+  //图片上传7牛地址前缀
+  uploadImg: {
+    url: "http://q9x0aceuu.bkt.clouddn.com/"
   },
 })
