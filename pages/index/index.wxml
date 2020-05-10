@@ -1,13 +1,44 @@
 <!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+<view class="home">
+	<!-- 左侧栏 -->
+	<scroll-view scroll-y="true" scroll-with-animation="true" class="left-tab">
+		<view class="{{leftTabActived===index? 'item-tab cur':'item-tab'}}" bindtap="handleTab" data-index="{{index}}" wx:for="{{tabList}}" wx:for-index="index" wx:for-item="itemName" wx:key="index">
+			<view class="{{leftTabActived===index? 'cur-line':''}}"></view>
+			{{itemName}}
+		</view>
+		<view class="item-tab"></view>
+	</scroll-view>
+
+	<!-- 右侧-商品列表 -->
+	<scroll-view scroll-y="true" scroll-with-animation="true">
+		<view class="item-product">
+			<view class="title">
+				<view>百变房套餐项目</view>
+				<view>1</view>
+			</view>
+			<view class="content">
+				<view class="pic"></view>
+				<view class="text-detail">
+					<view class="text">百变房铝合金窗</view>
+					<view>凤铝1.4厚铝合金窗</view>
+					<view>加厚型</view>
+					<view>
+						<view>2100</view>
+						<view>2100</view>
+					</view>
+				</view>
+			</view>
+		</view>
+			<view class="item-product">
+			<view class="title">
+				<view>百变房套餐项目</view>
+				<view>1</view>
+			</view>
+		</view>
+	</scroll-view>
+
+	<!-- 下体-下单 -->
+	<view class="lower-body">
+		1213
+	</view>
 </view>
