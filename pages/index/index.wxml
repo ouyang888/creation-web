@@ -10,35 +10,163 @@
 	</scroll-view>
 
 	<!-- 右侧-商品列表 -->
-	<scroll-view scroll-y="true" scroll-with-animation="true">
+	<scroll-view scroll-y="true" scroll-with-animation="true" class="right-list">
 		<view class="item-product">
 			<view class="title">
 				<view>百变房套餐项目</view>
 				<view>1</view>
 			</view>
-			<view class="content">
+			<view class="product-list">
 				<view class="pic"></view>
-				<view class="text-detail">
-					<view class="text">百变房铝合金窗</view>
-					<view>凤铝1.4厚铝合金窗</view>
-					<view>加厚型</view>
-					<view>
-						<view>2100</view>
-						<view>2100</view>
+				<view class="detail">
+					<view class="product-name">
+						<text>百变房铝合金窗</text>
+						<image lazy-load="true" src="{{servenImg + 'icon_tag.png'}}" class="product-icon"></image>
+						<image lazy-load="true" src="{{servenImg + 'icon_hot.png'}}" class="product-icon"></image>
+						<image lazy-load="true" src="{{servenImg + 'icon_good.png'}}" class="product-icon"></image>
+					</view>
+					<view class="product-size-name">凤铝1.4厚铝合金窗</view>
+					<view class="product-type-list">
+						<view class="item">加厚型</view>
+						<view class="item">铝合金</view>
+					</view>
+					<view class="product-money">
+						<view class="money-num"><text class="money-rmb">¥</text>2100</view>
+						<image lazy-load="true" src="{{servenImg + 'product_add.png'}}" class="product-handle"></image>
+					</view>
+				</view>
+			</view>
+			<view class="product-list">
+				<view class="pic"></view>
+				<view class="detail">
+					<view class="product-name">
+						<text>百变房铝合金窗</text>
+						<image lazy-load="true" src="{{servenImg + 'icon_tag.png'}}" class="product-icon"></image>
+						<image lazy-load="true" src="{{servenImg + 'icon_hot.png'}}" class="product-icon"></image>
+						<image lazy-load="true" src="{{servenImg + 'icon_good.png'}}" class="product-icon"></image>
+					</view>
+					<view class="product-size-name">凤铝1.4厚铝合金窗</view>
+					<view class="product-type-list">
+						<view class="item">加厚型</view>
+						<view class="item">铝合金</view>
+					</view>
+					<view class="product-money">
+						<view class="money-num"><text class="money-rmb">¥</text>2100</view>
+						<image lazy-load="true" src="{{servenImg + 'product_del.png'}}" class="product-handle"></image>
 					</view>
 				</view>
 			</view>
 		</view>
-			<view class="item-product">
+		<view class="item-product">
 			<view class="title">
 				<view>百变房套餐项目</view>
 				<view>1</view>
 			</view>
+			<view class="product-list">
+				<view class="pic"></view>
+				<view class="detail">
+					<view class="product-name">
+						<text>百变房铝合金窗</text>
+						<image lazy-load="true" src="{{servenImg + 'icon_tag.png'}}" class="product-icon"></image>
+						<image lazy-load="true" src="{{servenImg + 'icon_hot.png'}}" class="product-icon"></image>
+						<image lazy-load="true" src="{{servenImg + 'icon_good.png'}}" class="product-icon"></image>
+					</view>
+					<view class="product-size-name">凤铝1.4厚铝合金窗</view>
+					<view class="product-type-list">
+						<view class="item">加厚型</view>
+						<view class="item">铝合金</view>
+					</view>
+					<view class="product-money">
+						<view class="money-num"><text class="money-rmb">¥</text>2100</view>
+						<image lazy-load="true" src="{{servenImg + 'product_add.png'}}" class="product-handle"></image>
+					</view>
+				</view>
+			</view>
+			<view class="product-list">
+				<view class="pic"></view>
+				<view class="detail">
+					<view class="product-name">
+						<text>百变房铝合金窗</text>
+						<image lazy-load="true" src="{{servenImg + 'icon_tag.png'}}" class="product-icon"></image>
+						<image lazy-load="true" src="{{servenImg + 'icon_hot.png'}}" class="product-icon"></image>
+						<image lazy-load="true" src="{{servenImg + 'icon_good.png'}}" class="product-icon"></image>
+					</view>
+					<view class="product-size-name">凤铝1.4厚铝合金窗</view>
+					<view class="product-type-list">
+						<view class="item">加厚型</view>
+						<view class="item">铝合金</view>
+					</view>
+					<view class="product-money">
+						<view class="money-num"><text class="money-rmb">¥</text>2100</view>
+						<image lazy-load="true" src="{{servenImg + 'product_del.png'}}" class="product-handle"></image>
+					</view>
+				</view>
+			</view>
 		</view>
+		<view class="item-product">
+			<view class="title">
+				<view>百变房套餐项目</view>
+				<view>1</view>
+			</view>
+			<view class="product-list">
+				<view class="pic"></view>
+				<view class="detail">
+					<view class="product-name">
+						<text>百变房铝合金窗</text>
+						<image lazy-load="true" src="{{servenImg + 'icon_tag.png'}}" class="product-icon"></image>
+						<image lazy-load="true" src="{{servenImg + 'icon_hot.png'}}" class="product-icon"></image>
+						<image lazy-load="true" src="{{servenImg + 'icon_good.png'}}" class="product-icon"></image>
+					</view>
+					<view class="product-size-name">凤铝1.4厚铝合金窗</view>
+					<view class="product-type-list">
+						<view class="item">加厚型</view>
+						<view class="item">铝合金</view>
+					</view>
+					<view class="product-money">
+						<view class="money-num"><text class="money-rmb">¥</text>2100</view>
+						<image lazy-load="true" src="{{servenImg + 'product_add.png'}}" class="product-handle"></image>
+					</view>
+				</view>
+			</view>
+			<view class="product-list">
+				<view class="pic"></view>
+				<view class="detail">
+					<view class="product-name">
+						<text>百变房铝合金窗</text>
+						<image lazy-load="true" src="{{servenImg + 'icon_tag.png'}}" class="product-icon"></image>
+						<image lazy-load="true" src="{{servenImg + 'icon_hot.png'}}" class="product-icon"></image>
+						<image lazy-load="true" src="{{servenImg + 'icon_good.png'}}" class="product-icon"></image>
+					</view>
+					<view class="product-size-name">凤铝1.4厚铝合金窗</view>
+					<view class="product-type-list">
+						<view class="item">加厚型</view>
+						<view class="item">铝合金</view>
+					</view>
+					<view class="product-money">
+						<view class="money-num"><text class="money-rmb">¥</text>2100</view>
+						<image lazy-load="true" src="{{servenImg + 'product_del.png'}}" class="product-handle"></image>
+					</view>
+				</view>
+			</view>
+		</view>
+
+
 	</scroll-view>
 
 	<!-- 下体-下单 -->
-	<view class="lower-body">
-		1213
+	<view class="lower-box">
+		<view class="lower-body">
+			<view class="icon_shop_cart">
+				<view class="goods-num">4</view>
+			</view>
+			<view class="lower-text">
+				<text>致电咨询</text>
+				<image mode="aspectFill" src="{{servenImg + 'icon_phone.png'}}" class="lower-icon-phone"></image>
+				<text>13434124520</text>
+			</view>
+			<view class="lower-money">
+				<text class="lower-rmb">¥</text>1202024.51
+			</view>
+		</view>
 	</view>
 </view>
