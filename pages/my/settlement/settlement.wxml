@@ -1,0 +1,99 @@
+<view class="container">
+  <view class="box">
+    <view class="item">
+      <view class="shopImgs">
+        <image src="{{imgUrl +'shopImg.png'}}"></image>
+      </view>
+      <view class="product-list">
+        <view class="detail">
+          <view class="product-name">
+            <text>百变房铝合金窗</text>
+            <image lazy-load="true" src="{{imgUrl + 'icon_tag.png'}}" class="product-icon"></image>
+            <image lazy-load="true" src="{{imgUrl + 'icon_hot.png'}}" class="product-icon"></image>
+            <image lazy-load="true" src="{{imgUrl + 'icon_good.png'}}" class="product-icon"></image>
+          </view>
+          <view class="moneyBox">
+            <view class="product-size-name">凤铝1.4厚铝合金窗</view>
+            <view class="money">￥2100</view>
+          </view>
+          <view class="product-type-list">
+            <view style="padding-right:10rpx;">数量：1</view>
+            <view class="item">加厚型</view>
+            <view class="item">铝合金</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="item">
+      <view class="shopImgs">
+        <image src="{{imgUrl +'shopImg.png'}}"></image>
+      </view>
+      <view class="product-list">
+        <view class="detail">
+          <view class="product-name">
+            <text>百变房铝合金窗</text>
+            <image lazy-load="true" src="{{imgUrl + 'icon_tag.png'}}" class="product-icon"></image>
+            <image lazy-load="true" src="{{imgUrl + 'icon_hot.png'}}" class="product-icon"></image>
+            <image lazy-load="true" src="{{imgUrl + 'icon_good.png'}}" class="product-icon"></image>
+          </view>
+          <view class="moneyBox">
+            <view class="product-size-name">凤铝1.4厚铝合金窗</view>
+            <view class="money">￥2100</view>
+          </view>
+          <view class="product-type-list">
+            <view style="padding-right:10rpx;">数量：1</view>
+            <view class="item">加厚型</view>
+            <view class="item">铝合金</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+
+    <view class="item">
+      <view class="shopImgs">
+        <image src="{{imgUrl +'shopImg.png'}}"></image>
+      </view>
+      <view class="product-list">
+        <view class="detail">
+          <view class="product-name">
+            <text>百变房铝合金窗</text>
+            <image lazy-load="true" src="{{imgUrl + 'icon_tag.png'}}" class="product-icon"></image>
+            <image lazy-load="true" src="{{imgUrl + 'icon_hot.png'}}" class="product-icon"></image>
+            <image lazy-load="true" src="{{imgUrl + 'icon_good.png'}}" class="product-icon"></image>
+          </view>
+          <view class="moneyBox">
+            <view class="product-size-name">凤铝1.4厚铝合金窗</view>
+            <view class="money">￥2100</view>
+          </view>
+          <view class="product-type-list">
+            <view style="padding-right:10rpx;">数量：1</view>
+            <view class="item">加厚型</view>
+            <view class="item">铝合金</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+
+    <view class="monBottomBox">
+      <view class="flexBox">
+        <view class="bottomLeftFont">报价金额：</view>
+        <view class="bottomMoney">￥3000.00</view>
+      </view>
+      <view class="flexBox">
+        <view class="bottomLeftFont">未付金额：</view>
+        <view class="bottomMoneyWei">￥2000.00</view>
+      </view>
+       <view class="flexBox">
+        <view class="bottomLeftFont">已付金额：</view>
+        <view class="bottomMoney">￥1000.00</view>
+      </view>
+    </view>
+   
+   
+
+
+  </view>
+</view>

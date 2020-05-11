@@ -1,0 +1,20 @@
+<view class="container">
+  <view class="box">
+    <view class="item">
+      <view class="shopImgs">
+        <image src="{{imgUrl + 'wechatLogo.png'}}"></image>
+      </view>
+      <view class="flexRight">
+        <view style="padding-left:30rpx;">
+          <view class="titile">社区电商</view>
+          <view class="fu">社区电商 - 团到超值</view>
+        </view>
+        <view class="btn">关注</view>
+      </view>
+    </view>
+  </view>
+  <view style="padding-top: 89rpx;">
+    <view class="tips">点击关注公众号</view>
+    <view class="tips" style="padding-top:12rpx;">在公众号内回复内容即可反馈</view>
+  </view>
+</view>

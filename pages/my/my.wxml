@@ -1,7 +1,7 @@
 <view class="container">
   <view class="topBgSize" style="background-image:url({{servenImg + 'myBg.png'}})">
     <view class="headBox">
-      <view class="headImg">
+      <view class="headImg"> 
         <image src="../../images/touxiang.png" />
       </view>
       <view style="padding-left:48rpx;">
@@ -11,10 +11,10 @@
     </view>
   </view>
   <view class="middleBox">
-    <image src="../../images/settlement.png" />
-    <image src="../../images/offer.png" />
-    <image src="../../images/address.png" />
-    <image src="../../images/opinion.png" />
+    <image src="../../images/settlement.png" bindtap="gotoOffer"/>
+    <image src="../../images/offer.png" bindtap="gotoOffer"/>
+    <image src="../../images/address.png" bindtap="gotoAddress"/>
+    <image src="../../images/opinion.png" bindtap="gotoOpinion"/>
   </view>
   <view class="bottomBox">
     <view class="title">碧桂园凤凰湾听涛湾10座1005房《美强易涂》</view>

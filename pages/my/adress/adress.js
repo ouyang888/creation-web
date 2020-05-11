@@ -1,36 +1,20 @@
-// pages/my/my.js
-const app = getApp() 
+// pages/my/adress/adress.js
 Page({
+
   /**
    * 页面的初始数据
    */
   data: {
-    servenImg:""
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      servenImg: app.uploadImg.url,
-    })
+
   },
-  gotoOffer:function(){
-    wx.navigateTo({
-      url: './settlement/settlement',
-    })
-  },
-  gotoOpinion:function(){
-    wx.navigateTo({
-      url: './opinion/opinion',
-    })
-  },
-  gotoAddress:function(){
-    wx.navigateTo({
-      url: './adress/adress',
-    })
-  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

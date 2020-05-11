@@ -1,8 +1,11 @@
 {
   "pages":[
-    "pages/index/index",
+    "pages/my/adressSwitch/adressSwitch",
+    "pages/my/adress/adress",
     "pages/my/my",
-   
+    "pages/my/opinion/opinion",
+    "pages/my/settlement/settlement",
+    "pages/index/index",
     "pages/login/login"
   ],
   "window":{

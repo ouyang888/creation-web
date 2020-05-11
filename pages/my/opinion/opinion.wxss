@@ -1,0 +1,57 @@
+.box {
+  /* background: rgba(255, 255, 255, 1); *//* box-shadow: 0px 7rpx 27rpx 0rpx rgba(0, 0, 0, 0.05); */
+  border-radius: 10rpx;
+  /* position: relative;
+  top: 20rpx; */
+  padding: 0 30rpx;
+  padding-top: 20rpx;
+}
+
+.box .item {
+  background: #fff;
+  margin-bottom: 20rpx;
+  display: flex;
+  align-items: center;
+  padding: 30rpx;
+  border-radius: 10rpx;
+}
+
+.shopImgs image {
+  width: 88rpx;
+  height: 88rpx;
+}
+
+.titile {
+  color: #2a2a2a;
+  font-size: 32rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+}
+
+.fu {
+  color: #999;
+  font-size: 24rpx;
+  padding-top: 19rpx;
+}
+
+.flexRight {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.btn {
+  background: #3390ff;
+  color: #fff;
+  border-radius: 34rpx;
+  font-size: 28rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  padding: 20rpx 50rpx;
+}
+.tips{
+  text-align: center;
+  color: #CCCCCC;
+  font-size: 24rpx;
+}

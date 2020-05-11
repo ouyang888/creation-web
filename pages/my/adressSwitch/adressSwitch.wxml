@@ -1,0 +1,43 @@
+<view class="container">
+  <view class="addressLocationFlex">
+    <view class="locationFont">
+      <text>您当前的地址：</text>广东省佛山市顺德区</view>
+    <view class="locationImage">
+      <image src="{{locationImg + 'location.png'}}"></image>
+      <text>修改位置</text>
+    </view>
+  </view>
+  <view class="searchBox"> 
+    <!-- <image src="{{locationImg + 'search.png'}}" /> -->
+    <input class="weui-input" auto-focus placeholder="输入您指定小区名称" />
+  </view>
+  <view class="box">
+    <view class="item">
+      <view>
+        <view class="title">碧桂园凤凰湾听涛宛10座1005房《美强易涂》</view>
+        <view class="subtitleBox">
+          <view class="fontName">团长：李臻</view>
+          <view class="phoneImg">
+            <image src="../../../images/phoneIcon.png" />
+            <text>13434124520</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="item">
+      <view>
+        <view class="title">碧桂园凤凰湾听涛宛10座1005房《美强易涂》</view>
+        <view class="subtitleBox">
+          <view class="fontName">团长：李臻</view>
+          <view class="phoneImg">
+            <image src="../../../images/phoneIcon.png" />
+            <text>13434124520</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+</view>

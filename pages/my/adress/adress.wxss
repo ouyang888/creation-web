@@ -1,0 +1,71 @@
+
+.box {
+  /* background: rgba(255, 255, 255, 1); *//* box-shadow: 0px 7rpx 27rpx 0rpx rgba(0, 0, 0, 0.05); */
+  border-radius: 10rpx;
+  /* position: relative;
+  top: 20rpx; */
+  padding: 0 30rpx;
+  padding-top: 20rpx;
+}
+
+.box .item {
+  background: #fff;
+  margin-bottom: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* padding: 30rpx; */
+  border-radius: 10rpx;
+  box-shadow:0px 7rpx 27rpx 0px rgba(0, 0, 0, 0.05);
+}
+
+.title {
+  color: #2A2A2A;
+  font-size: 32rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  padding: 30rpx;
+}
+
+.subtitleBox {
+  display: flex;
+  align-items: center;
+  color: #999;
+  font-size: 24rpx;
+  /* padding: 0 30rpx 30rpx; */
+}
+
+.phoneImg image {
+  width: 24rpx;
+  height: 24rpx;
+}
+
+.phoneImg {
+  padding-left: 30rpx;
+  display: flex;
+  align-items: center;
+}
+
+.phoneImg text {
+  padding-left: 10rpx;
+}
+.subtitleBox{
+  padding-left: 30rpx;
+  padding-bottom: 20rpx;
+}
+.addressBtn{
+  color: #fff;
+  background: #3390FF;
+  border-radius:39rpx;
+  position: fixed;
+  bottom: 30rpx;
+  width: 90%;
+  height: 80rpx;
+  font-size: 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+}
