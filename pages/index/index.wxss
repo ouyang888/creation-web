@@ -46,14 +46,20 @@
 .home .right-list .item-product .title {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   height: 100rpx;
-  line-height: 100rpx;
   font-size: 28rpx;
-  padding: 0 20rpx;
+  padding: 0 33rpx 0 20rpx;
   box-sizing: border-box;
 }
 
-.home .right-list .item-product .product-list {
+.home .right-list .item-product .title .icon-bottom {
+  width: 24rpx;
+  height: 14rpx;
+  margin-top: -4px;
+}
+
+.home .right-list .item-product .product-list .item {
   display: flex;
   padding: 0 20rpx 20rpx 20rpx;
   font-family: Source Han Sans CN;
@@ -147,7 +153,7 @@
   position: relative;
 }
 
-.home .lower-box .lower-body .icon_shop_cart {
+.home .lower-box .lower-body .icon-shop-cart {
   width: 96rpx;
   height: 96rpx;
   background: #fff;
@@ -155,9 +161,17 @@
   position: relative;
   left: 20rpx;
   top: -20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.home .lower-box .lower-body .icon_shop_cart .goods-num {
+.home .lower-box .lower-body .icon-shop-cart .shop-cart {
+  width: 50rpx;
+  height: 46rpx;
+}
+
+.home .lower-box .lower-body .icon-shop-cart .goods-num {
   position: absolute;
   width: 36rpx;
   height: 28rpx;
@@ -171,14 +185,14 @@
 }
 
 
-.home .lower-box .lower-body .lower-text{
+.home .lower-box .lower-body .lower-text {
   color: #999999;
   font-size: 24rpx;
   margin-left: 54rpx;
   display: flex;
 }
 
-.home .lower-box .lower-body .lower-text .lower-icon-phone{
+.home .lower-box .lower-body .lower-text .lower-icon-phone {
   width: 12px;
   height: 24rpx;
   margin-left: 20rpx;
@@ -187,13 +201,13 @@
   vertical-align: middle;
 }
 
-.home .lower-box .lower-body .lower-money{
+.home .lower-box .lower-body .lower-money {
   min-width: 228rpx;
   background: #666666;
   color: #fff;
   position: absolute;
   right: 0;
-  height:98rpx;
+  height: 98rpx;
   border-radius: 0 10rpx 0 0;
   display: flex;
   align-items: center;
@@ -202,6 +216,6 @@
   padding: 0 6rpx;
 }
 
-.home .lower-box .lower-body .lower-money .lower-rmb{
+.home .lower-box .lower-body .lower-money .lower-rmb {
   font-size: 30rpx;
 }
