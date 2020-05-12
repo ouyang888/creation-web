@@ -9,7 +9,7 @@
 		<view class="item-tab"></view>
 	</scroll-view>
 
-	<!-- 右侧-商品列表 -->
+	<!-- 右侧-商品列表-推荐套餐 -->
 	<scroll-view scroll-y="true" scroll-with-animation="true" class="right-list">
 		<view class="item-product" wx:for="{{productList}}" wx:key="index">
 			<view class="title" bindtap="handleTitle" data-index="{{index}}">
@@ -38,13 +38,46 @@
 				</view>
 			</view>
 		</view>
+	</scroll-view>
+
+	<!-- 右侧-商品列表-商品 -->
+	<scroll-view scroll-y="true" scroll-with-animation="true" class="right-list" style="display:none;">
+		<view class="item-product not-project" wx:for="{{productList}}" wx:key="index">
+			<view class="product-list">
+				<view class="item" wx:for="{{item.product}}" wx:key="id">
+					<view class="pic"></view>
+					<view class="detail">
+						<view class="product-name">
+							<text>{{item.productName}}</text>
+							<image lazy-load="true" src="{{servenImg + 'icon_tag.png'}}" class="product-icon"></image>
+							<image lazy-load="true" src="{{servenImg + 'icon_hot.png'}}" class="product-icon"></image>
+							<image lazy-load="true" src="{{servenImg + 'icon_good.png'}}" class="product-icon"></image>
+						</view>
+						<view class="product-size-name">{{item.productSizeName}}</view>
+						<view class="product-type-list">
+							<view class="item" wx:for="{{item.productType}}" wx:key="id">{{item.name}}</view>
+						</view>
+						<view class="product-money">
+							<view class="money-num"><text class="money-rmb">¥</text>{{item.productMoney}}</view>
+							<image lazy-load="true" src="{{servenImg + 'product_add.png'}}" class="product-handle"></image>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+
+
+
+
+
 
 
 	</scroll-view>
 
 	<!-- 下体-下单 -->
 	<view class="lower-box">
-		<view class="lower-body">
+		<!-- 非下单状态 -->
+		<view class="lower-body" style="display:none">
 			<view class="icon-shop-cart">
 				<image class="shop-cart" src="{{servenImg + 'icon_shop_cart.png'}}"></image>
 				<view class="goods-num">4</view>
@@ -58,5 +91,38 @@
 				<text class="lower-rmb">¥</text>1202024.51
 			</view>
 		</view>
+
+		<!-- 可下单状态 -->
+		<view class="lower-body" style="">
+			<view class="lower-text order">
+				<image mode="aspectFill" src="{{servenImg + 'icon_phone.png'}}" class="lower-icon-phone"></image>
+				<text>13434124520</text>
+				<text class="order-money"><text class="order-rmb">¥</text>992221.51</text>
+			</view>
+			<view class="lower-money lower-plact-order">
+					去下单
+			</view>
+		</view>
+	</view>
+
+	<!-- 购物车-商品列表 -->
+	<view class="order-list-box">
+		<view class="order-boby">
+			<view class="order-title">
+				<view class="left">
+					<image class="order-bage" src="{{servenImg + 'order_bage.png'}}"></image>
+					<view class="order-select-total">已选商品 (共4项)</view>
+				</view>
+				<view class="right">
+					<image class="order-list-clear" src="{{servenImg + 'order_list_clear.png'}}"></image>
+					<text>清空</text>
+				</view>
+			</view>
+			<scroll-view scroll-y="true" scroll-with-animation="true" class="order-list">
+				<view class="order-list">
+				
+				</view>
+			</scroll-view>
+		</view>	
 	</view>
 </view>

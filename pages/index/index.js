@@ -4,6 +4,8 @@ const app = getApp()
 Page({
   data: {
     tabList: ['推荐套餐', '窗/防盗网', '电视背景', '乳胶漆', '天花', '门锁'],
+
+    //推荐套餐
     productList: [
       {
         id:"2020",

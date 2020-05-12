@@ -43,6 +43,11 @@
   border-bottom: 1px solid #E4E9F0;
 }
 
+.home .right-list .item-product.not-project {
+  font-family: Source Han Sans CN;
+  border-bottom: 0;
+}
+
 .home .right-list .item-product .title {
   display: flex;
   justify-content: space-between;
@@ -136,6 +141,9 @@
   height: 46rpx;
   margin-top: -2px;
 }
+.home .right-list .item-product .product-list .detail .product-money .product-handle:active {
+  opacity: 0.5;
+}
 
 .home .lower-box {
   width: 100%;
@@ -192,6 +200,11 @@
   display: flex;
 }
 
+.home .lower-box .lower-body .lower-text.order {
+  margin-left: 10rpx;
+  align-items: center;
+}
+
 .home .lower-box .lower-body .lower-text .lower-icon-phone {
   width: 12px;
   height: 24rpx;
@@ -215,7 +228,80 @@
   font-size: 36rpx;
   padding: 0 6rpx;
 }
+.home .lower-box .lower-body .lower-money.lower-plact-order{
+  background-color: #3390FF;
+  color: #fff;
+  font-size: 36rpx;
+}
+.home .lower-box .lower-body .lower-money.lower-plact-order:active{
+  background:rgba(51,144,255,0.5);
+}
 
 .home .lower-box .lower-body .lower-money .lower-rmb {
   font-size: 30rpx;
+}
+
+.home .lower-box .lower-body .lower-text .order-money{
+  margin-left: 50rpx;
+  color: #fff;
+  font-size: 36rpx;
+}
+
+.home .lower-box .lower-body .lower-text .order-money .order-rmb{
+  font-size: 30rpx;
+}
+
+.home .order-list-box{
+  position: fixed;
+  width: 100vw;
+  height: 100%;
+  bottom: 98rpx;
+  background-color: rgba(0, 0, 0, .65);
+  color: #fff;
+}
+
+.home .order-list-box .order-boby{
+  position: absolute;
+  width: 100%;
+  height: 720rpx;
+  background-color: #fff;
+  bottom: 0;
+  border-radius:10rpx 10rpx 0px 0px;
+}
+
+.home .order-list-box .order-boby .order-title{
+  height: 96rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 30rpx;
+  border-bottom: 1px solid #E4E9F0;
+}
+
+.home .order-list-box .order-boby .order-title .left{
+  display: flex;
+  align-items: center;
+}
+.home .order-list-box .order-boby .order-title .left .order-bage{
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.home .order-list-box .order-boby .order-title .left .order-select-total{
+  font-size: 24rpx;
+  color: #666666;
+  margin-left: 12rpx;
+}
+
+.home .order-list-box .order-boby .order-title .right{
+  color: #999;
+  font-size: 24rpx;
+  margin-top: -4rpx;
+}
+.home .order-list-box .order-boby .order-title .right .order-list-clear{
+  width: 24rpx;
+  height: 25rpx;
+  margin-right: 4rpx;
+ vertical-align: middle;
+ margin-top: -4rpx;
 }
