@@ -79,7 +79,8 @@ Page({
       },
     ],
     leftTabActived: 0, //左侧栏-当前选中值
-    servenImg: ''
+    servenImg: '',
+    isShowProjectList:true//判断项目显示\隐藏
   },
   onLoad: function () {
     this.setData({
@@ -96,6 +97,7 @@ Page({
 
   //右侧栏-点击标题-收缩效果
   handleTitle(data) {
-    console.log(data);
+      let index = data.currentTarget.dataset.index;
+      console.log(index);
   }
 })
