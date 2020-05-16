@@ -92,6 +92,12 @@
       </view>
     </view>
    
+
+
+   <view class="foot-btn-group">
+      <button class="item-btn left-btn">验收</button>
+      <button class="item-btn right-btn">取消</button>
+   </view>
    
 
 

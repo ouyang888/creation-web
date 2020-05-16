@@ -89,7 +89,6 @@ Page({
   },
   // 左侧栏-点击获取当前选中的值
   handleTab(index) {
-    console.log(index);
     this.setData({
       leftTabActived: index.currentTarget.dataset.index
     })
@@ -98,6 +97,5 @@ Page({
   //右侧栏-点击标题-收缩效果
   handleTitle(data) {
       let index = data.currentTarget.dataset.index;
-      console.log(index);
   }
 })
