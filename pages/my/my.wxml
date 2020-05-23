@@ -1,7 +1,7 @@
 <view class="container">
   <view class="topBgSize" style="background-image:url({{servenImg + 'myBg.png'}})">
     <view class="headBox">
-      <view class="headImg"> 
+      <view class="headImg">
         <image src="{{showUser.avatarUrl}}" />
       </view>
       <view style="padding-left:48rpx;">
@@ -11,12 +11,13 @@
     </view>
   </view>
   <view class="middleBox">
-    <image src="../../images/settlement.png" bindtap="gotoOffer"/>
-    <image src="../../images/offer.png" bindtap="gotoQuotation"/>
-    <image src="../../images/address.png" bindtap="gotoAddress"/>
-    <image src="../../images/opinion.png" bindtap="gotoOpinion"/>
+    <image src="../../images/settlement.png" bindtap="gotoOffer" />
+    <image src="../../images/offer.png" bindtap="gotoQuotation" />
+    <image src="../../images/address.png" bindtap="gotoAddress" />
+    <image src="../../images/opinion.png" bindtap="gotoOpinion" />
   </view>
-  <view class="bottomBox">
+
+  <!-- <view class="bottomBox">
     <view class="title">碧桂园凤凰湾听涛湾10座1005房《美强易涂》</view>
     <view class="subtitleBox">
       <view class="fontName">团长：李臻</view>
@@ -25,16 +26,6 @@
         <text>13434124520</text>
       </view>
     </view>
-  </view>
-  <view class="bottomBox">
-    <view class="title">碧桂园凤凰湾听涛湾10座1005房《美强易涂》</view>
-    <view class="subtitleBox">
-      <view class="fontName">团长：李臻</view>
-      <view class="phoneImg">
-        <image src="../../images/phoneIcon.png" />
-        <text>13434124520</text>
-      </view>
-    </view>
-  </view>
+  </view> -->
   <view class="bottomFont">做精品工程 让客户安心放心</view>
 </view>

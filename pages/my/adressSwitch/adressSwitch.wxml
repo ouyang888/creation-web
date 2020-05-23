@@ -25,7 +25,7 @@
             <view class="subtitleBox">
               <view class="fontName">团长：XX</view>
 
-              <view wx:for="{{item.rooms}}" wx:for-index="key">{{key}}</view>
+              <!-- <view wx:for="{{item.rooms}}" wx:for-index="key">{{key}}</view> -->
               
               <view class="phoneImg">
                 <image src="../../../images/phoneIcon.png" />

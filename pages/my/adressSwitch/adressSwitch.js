@@ -11,7 +11,7 @@ Page({
     detailed: '',
     token: "",
     multiIndex: [0, 0, 0],
-    communityArr:"",
+    communityArr: "",
     multiArray: [],
   },
   //通过位置获取社区
@@ -46,17 +46,30 @@ Page({
               }
               app.xhr('GET', app.apiUrl.houseList, items, '', (res1) => {
                 if (res1.data.code == 0) {
+                  let newArr = []
                   let roomsArr = []
+                  let floorArr = []
+                  let houseArr = []
                   for (var i in res1.data.data) {
-                    for(var k in res1.data.data[i].rooms){
-                      roomsArr.push(res1.data.data[i].rooms[k])
+                    for (var k in res1.data.data[i].rooms) {
+                      roomsArr.push(res1.data.data[i].rooms[k].tower)
+                      for (var y in res1.data.data[i].rooms[k].floor){
+                        floorArr.push(res1.data.data[i].rooms[k].floor[y])
+                        
+                        // houseArr.push(res1.data.data[i].rooms[k].house[y])
+                      }
+                     
                     }
                   }
-                  console.log("1111222", roomsArr)
+                  newArr.push(roomsArr)
                  
+                  // console.log("1111222", roomsArr)
                   that.setData({
-                    communityArr: res1.data.data
+                    communityArr: res1.data.data,
+                    multiArray: newArr
                   })
+                  console.log("123456", that.data.multiArray)
+                  
                 }
               })
             }
