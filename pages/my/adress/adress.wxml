@@ -12,7 +12,9 @@
           </view>
         </view>
       </view>
-      <view style="padding-right:20rpx;color:#999999">></view>
+      <view class="iconImg">
+        <image src="{{imgUrl +'rightIcon.png'}}"></image>
+      </view>
     </view>
 
     <view class="item">
@@ -26,12 +28,14 @@
           </view>
         </view>
       </view>
-      <view style="padding-right:20rpx;color:#999999">></view>
+      <view class="iconImg">
+        <image src="{{imgUrl +'rightIcon.png'}}"></image>
+      </view>
     </view>
 
 
   </view>
- 
-    <view class="addressBtn">添加新地址</view>
-  
+
+  <view class="addressBtn" bindtap="gotoAddress">添加新地址</view>
+
 </view>

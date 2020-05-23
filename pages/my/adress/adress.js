@@ -1,18 +1,40 @@
 // pages/my/adress/adress.js
+const app = getApp() 
+let storage = require("../../../utils/storage.js")
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    imgUrl:""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      imgUrl: app.uploadImg.url
+    })
+    this.addressInfo();
+  },
 
+  gotoAddress:function(){
+    wx.navigateTo({
+      url: '../adressSwitch/adressSwitch',
+    })
+  },
+
+  //地址列表
+  addressInfo:function(){
+    let list = storage.get_s("token")
+    let item = {
+      access_token: list.access_token
+    }
+    app.xhr('GET', app.apiUrl.addressList, item,'',(res)=>{
+      console.log("222333", res)
+    })
   },
 
   /**

@@ -1,5 +1,6 @@
 // pages/login/login.js
-const app = getApp() 
+const app = getApp()
+let storage = require("../../utils/storage.js")
 Page({
 
   /**
@@ -7,14 +8,35 @@ Page({
    */
   data: {
     hasUserInfo: false,
+    showUser: null,
+    code: ""
   },
+
+
+
   getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
+    if (e.detail.errMsg == "getUserInfo:fail auth deny") {
+      return;
+    } else {
+      wx.login({
+        success: res => {
+          console.log("888", res)
+          // 发送 res.code 到后台换取 openId, sessionKey, unionId
+          this.setData({
+            userInfo: e.detail.userInfo,
+            hasUserInfo: true,
+            code: res.code
+          })
+          storage.set("userInfo", this.data.userInfo)
+        }
+      })
+
+    }
+
+
+
     // if (e.detail.userInfo == undefined) {
     //   return;
     // } else {
@@ -23,15 +45,39 @@ Page({
     //   })
     // }
   },
+
+
+  //获取手机号码
   getPhoneNumber: function(e) {
     console.log(e)
+    if (e.detail.errMsg == "getPhoneNumber:fail user deny") {
+      return;
+    } else {
+      // this.thirdPartyLogin();
+      let list = {
+        code: this.data.code,
+        json_data: e.detail.encryptedData,
+        iv: e.detail.iv,
+        name: this.data.userInfo.nickName,
+        avatarUrl: this.data.userInfo.avatarUrl,
+        gender: this.data.userInfo.gender
+      }
+      app.xhr('POST', app.apiUrl.weChatData, list, '', (res) => {
+        if (res.data.code == 0) {
+          storage.set("token", res.data.data)
+        }
+      })
+      wx.switchTab({
+        url: '../index/index'
+      })
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+   
   },
 
   /**

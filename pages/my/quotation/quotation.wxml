@@ -1,49 +1,34 @@
 <view class="container">
   <view class="box">
 
-    <view class="item" wx:for="{{settlmentInfo.good}}" wx:key="index">
+    <view class="item" wx:for="{{quotationInfo.cart}}" wx:key="index">
       <view class="shopImgs">
         <image src="{{item.good_img}}"></image>
       </view>
       <view class="product-list">
         <view class="detail">
           <view class="product-name">
-            <text>{{item.good_name}}</text>
+            <text>{{item.name}}</text>
             <image lazy-load="true" src="{{imgUrl + 'icon_tag.png'}}" class="product-icon"></image>
             <image lazy-load="true" src="{{imgUrl + 'icon_hot.png'}}" class="product-icon"></image>
             <image lazy-load="true" src="{{imgUrl + 'icon_good.png'}}" class="product-icon"></image>
           </view>
           <view class="moneyBox">
             <view class="product-size-name">{{item.own_spec}}</view>
-            <view class="money">￥{{item.good_price}}</view>
+            <view class="money">￥{{item.price}}</view>
           </view>
           <view class="product-type-list">
             <view style="padding-right:10rpx;">数量：{{item.good_num}}</view>
-            <!-- <view class="item">加厚型</view>
-            <view class="item">铝合金</view> -->
           </view>
         </view>
       </view>
     </view>
 
 
-
-
-
-
-
     <view class="monBottomBox">
       <view class="flexBox">
         <view class="bottomLeftFont">报价金额：</view>
-        <view class="bottomMoney">￥{{settlmentInfo.total_amount}}</view>
-      </view>
-      <view class="flexBox">
-        <view class="bottomLeftFont">未付金额：</view>
-        <view class="bottomMoneyWei">￥{{settlmentInfo.not_paid_amount}}</view>
-      </view>
-      <view class="flexBox">
-        <view class="bottomLeftFont">已付金额：</view>
-        <view class="bottomMoney">￥{{settlmentInfo.paid_amount}}</view>
+        <view class="bottomMoney">￥{{quotationInfo.order_total_price}}</view>
       </view>
     </view>
 

@@ -100,4 +100,5 @@
   text-align: center;
   padding-bottom: 90rpx;
   padding-top: 90rpx;
+  background: #f0f2f5;
 }

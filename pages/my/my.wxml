@@ -2,17 +2,17 @@
   <view class="topBgSize" style="background-image:url({{servenImg + 'myBg.png'}})">
     <view class="headBox">
       <view class="headImg"> 
-        <image src="../../images/touxiang.png" />
+        <image src="{{showUser.avatarUrl}}" />
       </view>
       <view style="padding-left:48rpx;">
-        <view class="userName">李先生</view>
+        <view class="userName">{{showUser.nickName}}</view>
         <view class="phone">13434124520</view>
       </view>
     </view>
   </view>
   <view class="middleBox">
     <image src="../../images/settlement.png" bindtap="gotoOffer"/>
-    <image src="../../images/offer.png" bindtap="gotoOffer"/>
+    <image src="../../images/offer.png" bindtap="gotoQuotation"/>
     <image src="../../images/address.png" bindtap="gotoAddress"/>
     <image src="../../images/opinion.png" bindtap="gotoOpinion"/>
   </view>

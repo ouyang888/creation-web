@@ -1,9 +1,8 @@
-<!--pages/login/login.wxml-->
 <view>
   <view class="topImg">
     <image src="../../images/loginLogo.png"></image>
   </view>
   <button class="loginBtn" wx:if="{{!hasUserInfo}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">授权微信登陆</button>
   <button class="loginBtn" wx:if="{{hasUserInfo}}" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号</button>
-  <button class="cancelBtn">取消登陆</button>
+  <!-- <button class="cancelBtn" bindtap="wechatLogin">取消登陆</button> -->
 </view>

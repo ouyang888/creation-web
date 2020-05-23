@@ -1,20 +1,26 @@
 {
-  "pages":[
-    "pages/my/settlement/settlement",
+  "pages": [
     "pages/my/my",
-    "pages/productDetail/productDetail",
-    "pages/index/index",
+    "pages/my/quotation/quotation",
+    "pages/my/settlement/settlement",
     "pages/my/adressSwitch/adressSwitch",
+    "pages/index/index",
+    "pages/login/login",
     "pages/my/adress/adress",
+    "pages/my/adressLocation/adressLocation",
     "pages/my/opinion/opinion",
-    
-    "pages/login/login"
+    "pages/productDetail/productDetail"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",

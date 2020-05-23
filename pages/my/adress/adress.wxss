@@ -69,3 +69,8 @@
   left: 0;
   right: 0;
 }
+.iconImg image {
+  width: 14rpx;
+  height: 24rpx;
+  padding-right: 30rpx;
+}
