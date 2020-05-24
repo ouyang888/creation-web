@@ -1,6 +1,5 @@
 <view class="container">
   <view class="box">
-
     <view class="item" wx:for="{{settlmentInfo.good}}" wx:key="index">
       <view class="shopImgs">
         <image src="{{item.good_img}}"></image>

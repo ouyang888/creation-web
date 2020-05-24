@@ -88,6 +88,7 @@ App({
     location: "/api/user/map/location", //根据经纬获取省市区
     houseList: "/api/user/house/list", //获取户型列表
     cartList: "/api/user/cart/list", //报价单
-    orderList: "/api/user/order/list"//结算单
+    orderList: "/api/user/order/list",//结算单
+    addAddress:"/api/user/address/add"
   }
 })

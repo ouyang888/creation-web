@@ -17,7 +17,7 @@
   </view>
   <view class="box">
 
-    <view wx:for="{{communityArr}}" wx:key="{{index}}" >
+    <view wx:for="{{communityArr}}" wx:key="index" bindtap="roomHandle" data-id="{{item.id}}">
       <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
         <view class="item" >
           <view>
@@ -26,7 +26,7 @@
               <view class="fontName">团长：XX</view>
 
               <!-- <view wx:for="{{item.rooms}}" wx:for-index="key">{{key}}</view> -->
-              
+
               <view class="phoneImg">
                 <image src="../../../images/phoneIcon.png" />
                 <text>1343418888</text>

@@ -1,7 +1,7 @@
 <view class="container">
   <view class="box">
 
-    <view class="item" wx:for="{{quotationInfo.cart}}" wx:key="index">
+    <view class="item" wx:for="{{quotationInfo}}" wx:key="index">
       <view class="shopImgs">
         <image src="{{item.good_img}}"></image>
       </view>
@@ -28,7 +28,7 @@
     <view class="monBottomBox">
       <view class="flexBox">
         <view class="bottomLeftFont">报价金额：</view>
-        <view class="bottomMoney">￥{{quotationInfo.order_total_price}}</view>
+        <view class="bottomMoney">￥{{quotationObj.order_total_price}}</view>
       </view>
     </view>
 

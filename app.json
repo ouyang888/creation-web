@@ -1,11 +1,12 @@
 {
   "pages": [
-    "pages/my/adressSwitch/adressSwitch",
     "pages/my/my",
+    "pages/my/adressSwitch/adressSwitch",
+    "pages/index/index",
+    
     "pages/my/quotation/quotation",
     "pages/my/settlement/settlement",
-   
-    "pages/index/index",
+
     "pages/login/login",
     "pages/my/adress/adress",
     "pages/my/adressLocation/adressLocation",

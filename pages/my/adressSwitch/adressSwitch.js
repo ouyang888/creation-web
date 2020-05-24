@@ -1,166 +1,216 @@
 // pages/my/adressSwitch/adressSwitch.js
 const app = getApp()
-let storage = require("../../../utils/storage.js")
+let storage = require("../../../utils/storage.js");
 Page({
-  data: {
-    locationImg: "",
-    province: "",
-    city: "",
-    district: "",
-    customItem: [],
-    detailed: '',
-    token: "",
-    multiIndex: [0, 0, 0],
-    communityArr: "",
-    multiArray: [],
-  },
-  //通过位置获取社区
-  loactionCommunity: function() {
-    let token = storage.get_s("token")
-    const that = this
-    wx.getLocation({
-      type: 'wgs84',
-      success(res) {
-        if (res.errMsg == "getLocation:ok") {
-          let item = {
-            access_token: token.access_token,
-            latitude: res.latitude,
-            longitude: res.longitude
-          }
-          //获取当前位置
-          app.xhr('GET', app.apiUrl.location, item, '', (res) => {
-            if (res.data.code == 0) {
-              let dataList = res.data.data
-              that.setData({
-                access_token: token.access_token,
-                province: dataList.province,
-                city: dataList.city,
-                district: dataList.district
-              })
-              //通过位置获取社区
-              let items = {
-                access_token: token.access_token,
-                provice: dataList.province,
-                city: dataList.city,
-                district: dataList.district
-              }
-              app.xhr('GET', app.apiUrl.houseList, items, '', (res1) => {
-                if (res1.data.code == 0) {
-                  let newArr = []
-                  let roomsArr = []
-                  let floorArr = []
-                  let houseArr = []
-                  for (var i in res1.data.data) {
-                    for (var k in res1.data.data[i].rooms) {
-                      roomsArr.push(res1.data.data[i].rooms[k].tower)
-                      for (var y in res1.data.data[i].rooms[k].floor){
-                        floorArr.push(res1.data.data[i].rooms[k].floor[y])
-                        
-                        // houseArr.push(res1.data.data[i].rooms[k].house[y])
-                      }
-                     
+    data: {
+        locationImg: "",
+        province: "",
+        city: "",
+        district: "",
+        customItem: [],
+        detailed: '',
+        token: "",
+        multiIndex: [0, 0, 0],
+        communityArr: [],
+        multiArray: [[0],[0],[0]],
+
+        //临时存放层
+        tempRoomData: {}
+    },
+    //通过位置获取社区
+    loactionCommunity: function () {
+        let token = storage.get_s("token")
+        const that = this
+        wx.getLocation({
+            type: 'wgs84',
+            success(res) {
+                if (res.errMsg == "getLocation:ok") {
+                    let item = {
+                        access_token: token.access_token,
+                        latitude: res.latitude,
+                        longitude: res.longitude
                     }
-                  }
-                  newArr.push(roomsArr)
-                 
-                  // console.log("1111222", roomsArr)
-                  that.setData({
-                    communityArr: res1.data.data,
-                    multiArray: newArr
-                  })
-                  console.log("123456", that.data.multiArray)
-                  
+                    //获取当前位置
+                    app.xhr('GET', app.apiUrl.location, item, '', (res) => {
+                        if (res.data.code == 0) {
+                            let dataList = res.data.data
+                            that.setData({
+                                access_token: token.access_token,
+                                province: dataList.province,
+                                city: dataList.city,
+                                district: dataList.district
+                            })
+                            //通过位置获取社区
+                            let items = {
+                                access_token: token.access_token,
+                                provice: dataList.province,
+                                city: dataList.city,
+                                district: dataList.district
+                            }
+                            app.xhr('GET', app.apiUrl.houseList, items, '', (res1) => {
+                                if (res1.data.code == 0) {
+                                    that.setData({
+                                        communityArr: res1.data.data,
+                                    })
+                                }
+                            })
+                        }
+                    })
                 }
-              })
             }
-          })
+        })
+    },
+    onLoad: function (options) {
+        this.loactionCommunity();
+        this.setData({
+            locationImg: app.uploadImg.url,
+        })
+    },
+
+    gotoLocation: function () {
+        wx.navigateTo({
+            url: '../adressLocation/adressLocation',
+        })
+    },
+
+    // 确认--选择省市区
+    bindRegionChange: function (e) {
+        let that = this;
+        let token = storage.get_s("token")
+
+        let items = {
+            access_token: token.access_token,
+            provice: e.detail.value[0],
+            city: e.detail.value[1],
+            district: e.detail.value[2]
         }
-      }
-    })
-  },
-  onLoad: function(options) {
-    this.loactionCommunity();
-    this.setData({
-      locationImg: app.uploadImg.url,
-    })
+        app.xhr('GET', app.apiUrl.houseList, items, '', (res1) => {
+            console.log(res1);
+            if (res1.data.code == 0) {
+                that.setData({
+                    communityArr: res1.data.data,
+                })
+            }
+        })
 
-  },
 
-  gotoLocation: function() {
-    wx.navigateTo({
-      url: '../adressLocation/adressLocation',
-    })
-  },
-  bindMultiPickerColumnChange: function(e) {
-    console.log("222", e)
-  },
 
-  bindRegionChange: function(e) {
-    var that = this
-    //为了让选择框有个默认值，    
-    this.setData({
-      //拼的字符串传后台
-      detailed: e.detail.value[0] + " " + e.detail.value[1] + " " + e.detail.value[2],
-      //下拉框选中的值
-      region: e.detail.value,
-      province: e.detail.value[0],
-      city: e.detail.value[1],
-      district: e.detail.value[2]
-    })
-  },
-  bindMultiPickerChange: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      multiIndex: e.detail.value
-    })
-  },
+        //为了让选择框有个默认值，
+        this.setData({
+            //拼的字符串传后台
+            detailed: e.detail.value[0] + " " + e.detail.value[1] + " " + e.detail.value[2],
+            //下拉框选中的值
+            region: e.detail.value,
+            province: e.detail.value[0],
+            city: e.detail.value[1],
+            district: e.detail.value[2]
+        })
+    },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
+    // 确定选好的楼层
+    bindMultiPickerChange: function (e) {
+        this.setData({
+            multiIndex: e.detail.value,
+        })
 
-  },
+    },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
 
-  },
+    // 点击选择楼层
+    roomHandle: function (id) {
+        let that = this;
+        that.setData({
+            multiIndex: [0, 0, 0]
+        });
+        let tower = [];
+        let masterArr = [];
+        let roomId = id.currentTarget.dataset.id;
+        that.data.communityArr.forEach(item => {
+            if (item.id === roomId) {
+                item.rooms.forEach(item => {
+                    tower.push(item.tower)
+                });
+                masterArr[1] = item.rooms[0].floor;
+                masterArr[2] = item.rooms[0].house;
+                that.setData({
+                    tempRoomData: item
+                })
+            }
+        });
+        masterArr[0] = tower;
+        that.setData({
+            multiArray: JSON.parse(JSON.stringify(masterArr))
+        });
+    },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
 
-  },
+    // 滑动选择楼
+    bindMultiPickerColumnChange: function (e) {
+        let that = this;
+        let multiArr = this.data.multiArray
+        if (e.detail.column === 0 && JSON.stringify(this.data.tempRoomData) !== '{}') {
+            let val = e.detail.value + 1;
+            this.data.tempRoomData.rooms.forEach(item => {
+                if (item.tower === val) {
+                    multiArr[1] = item.floor;
+                    multiArr[2] = item.house;
+                    that.setData({
+                        multiIndex: [val - 1, 0, 0]
+                    })
+                }
+            });
+            that.setData({
+                multiArray: multiArr
+            })
+        }
+    },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
+    /**
+     * 生命周期函数--监听页面初次渲染完成
+     */
+    onReady: function () {
 
-  },
+    },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
+    /**
+     * 生命周期函数--监听页面显示
+     */
+    onShow: function () {
 
-  },
+    },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
+    /**
+     * 生命周期函数--监听页面隐藏
+     */
+    onHide: function () {
 
-  },
+    },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
+    /**
+     * 生命周期函数--监听页面卸载
+     */
+    onUnload: function () {
 
-  }
+    },
+
+    /**
+     * 页面相关事件处理函数--监听用户下拉动作
+     */
+    onPullDownRefresh: function () {
+
+    },
+
+    /**
+     * 页面上拉触底事件的处理函数
+     */
+    onReachBottom: function () {
+
+    },
+
+    /**
+     * 用户点击右上角分享
+     */
+    onShareAppMessage: function () {
+
+    }
 })
