@@ -91,6 +91,5 @@ App({
     orderList: "/api/user/order/list",//结算单
     addAddress:"/api/user/address/add",//添加地址
     houseId:"/api/user/house/id"//获取户型id
-
   }
 })

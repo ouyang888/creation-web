@@ -1,42 +1,46 @@
 <view class="container">
-  <view class="addressLocationFlex">
-    <view class="locationFont">
-      <text>您当前的地址：</text>{{province}}{{city}}{{district}}</view>
-    <view class="locationImage">
-      <image lazy-load="true" src="{{locationImg + 'location.png'}}"></image>
-      <view>
-        <picker style="padding-bottom:10rpx" mode="region" bindchange="bindRegionChange" value="{{detailed}}" custom-item="{{customItem}}" name="detailed">
-          <text>修改位置</text>
-        </picker>
-      </view>
-    </view>
-  </view>
-  <view class="searchBox">
-    <!-- <image src="{{locationImg + 'search.png'}}" /> -->
-    <input class="weui-input" auto-focus placeholder="输入您指定小区名称" />
-  </view>
-  <view class="box">
-    <view wx:for="{{communityArr}}" wx:key="index" bindtap="roomHandle" data-id="{{item.id}}">
-      <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
-        <view class="item" >
-          <view>
-            <view class="title">{{item.name}}</view>
-            <view class="subtitleBox">
-              <view class="fontName">团长：XX</view>
-
-              <!-- <view wx:for="{{item.rooms}}" wx:for-index="key">{{key}}</view> -->
-
-              <view class="phoneImg">
-                <image src="../../../images/phoneIcon.png" />
-                <text>1343418888</text>
-              </view>
-            </view>
-          </view>
-
+    <view class="addressLocationFlex">
+        <view class="locationFont">
+            <text>您当前的地址：</text>
+            {{province}}{{city}}{{district}}
         </view>
-      </picker>
+        <view class="locationImage">
+            <image lazy-load="true" src="{{locationImg + 'location.png'}}"></image>
+            <view style="margin-top:-4rpx;">
+                <picker style="min-width:122rpx" mode="region" bindchange="bindRegionChange" value="{{detailed}}"
+                        custom-item="{{customItem}}" name="detailed">
+                    <text>修改位置</text>
+                </picker>
+            </view>
+        </view>
     </view>
+    <view class="searchBox">
+        <!-- <image src="{{locationImg + 'search.png'}}" /> -->
+        <input class="weui-input" auto-focus placeholder="输入您指定小区名称"/>
+    </view>
+    <view class="box">
+        <view wx:for="{{communityArr}}" wx:key="index" bindtap="roomHandle" data-id="{{item.id}}">
+            <picker mode="multiSelector" bindchange="bindMultiPickerChange"
+                    bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+                <view class="item">
+                    <view>
+                        <view class="title">{{item.name}}</view>
+                        <view class="subtitleBox">
+                            <view class="fontName">团长：XX</view>
 
-  </view>
+                            <!-- <view wx:for="{{item.rooms}}" wx:for-index="key">{{key}}</view> -->
+
+                            <view class="phoneImg">
+                                <image src="../../../images/phoneIcon.png"/>
+                                <text>1343418888</text>
+                            </view>
+                        </view>
+                    </view>
+
+                </view>
+            </picker>
+        </view>
+
+    </view>
 
 </view>
