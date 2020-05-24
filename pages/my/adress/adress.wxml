@@ -1,7 +1,7 @@
 <view class="container">
+
+  <scroll-view scroll-y="true">
   <view class="box">
-
-
       <view class="item" wx:for="{{addressData}}" wx:key="index" bindtap="addressHandle" data-item="{{item}}">
             <view>
               <view class="title">{{item.address}}</view>
@@ -17,13 +17,8 @@
               <image src="{{imgUrl +'rightIcon.png'}}"></image>
             </view>
           </view>
-
-
-
-
-
-
-  </view>
+          </view>
+</scroll-view>
 
   <view class="addressBtn" bindtap="gotoAddress">添加新地址</view>
 

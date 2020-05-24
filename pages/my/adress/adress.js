@@ -44,7 +44,6 @@ Page({
 
   //点击地区跳转到首页
   addressHandle(data){
-    console.log(data);
     storage.set('addressParam',data.currentTarget.dataset.item);
     wx.switchTab({
       url: '../../index/index',
