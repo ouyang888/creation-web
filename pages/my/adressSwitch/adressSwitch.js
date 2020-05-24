@@ -111,7 +111,7 @@ Page({
         let accountInfo = storage.get_s("userInfo");
 
         let tower = e.detail.value[0] + 1;
-        let floor = e.detail.value[1]+1;
+        let floor = e.detail.value[1] + 1;
         let house = e.detail.value[2] + 1;
 
         let dizhi = `${that.data.province}${that.data.city}${that.data.district}${that.data.tempRoomData.name}${tower}座${floor}楼${house}号`;
@@ -144,9 +144,9 @@ Page({
                             room_id: res.data.data.house_id
                         };
                         storage.set('showDataObj', showDataObj);
-                        // wx.switchTab({
-                        //     url: '../../index/index'
-                        // })
+                        wx.switchTab({
+                            url: '../../index/index'
+                        })
                     }
                 });
             }
@@ -204,25 +204,26 @@ Page({
     // 滑动选择楼
     bindMultiPickerColumnChange: function (e) {
         let that = this;
+        let floor = [];
+        let house = [];
         let multiArr = this.data.multiArray
         if (e.detail.column === 0 && JSON.stringify(this.data.tempRoomData) !== '{}') {
             let val = e.detail.value + 1;
             this.data.tempRoomData.rooms.forEach(item => {
                 if (item.tower === val) {
-
-                    item.floor = item.floor.map(item => {
-                        let str = '楼'
+                    floor = item.floor.map(item => {
+                        let str = '楼';
                         item += str;
                         return item;
                     });
-                    item.house = item.house.map(item => {
+                    house = item.house.map(item => {
                         let str = '号'
                         item += str;
                         return item;
                     });
 
-                    multiArr[1] = item.floor;
-                    multiArr[2] = item.house;
+                    multiArr[1] = floor;
+                    multiArr[2] = house;
                     that.setData({
                         multiIndex: [val - 1, 0, 0]
                     })
