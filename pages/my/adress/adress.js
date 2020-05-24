@@ -1,5 +1,5 @@
 // pages/my/adress/adress.js
-const app = getApp() 
+const app = getApp()
 let storage = require("../../../utils/storage.js")
 Page({
 
@@ -7,7 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imgUrl:""
+    imgUrl:"",
+    addressData:[],
   },
 
   /**
@@ -33,7 +34,20 @@ Page({
       access_token: list.access_token
     }
     app.xhr('GET', app.apiUrl.addressList, item,'',(res)=>{
-      console.log("222333", res)
+      if(res.data.code === 0){
+        this.setData({
+          addressData:res.data.data
+        })
+      }
+    })
+  },
+
+  //点击地区跳转到首页
+  addressHandle(data){
+    console.log(data);
+    storage.set('addressParam',data.currentTarget.dataset.item);
+    wx.switchTab({
+      url: '../../index/index',
     })
   },
 

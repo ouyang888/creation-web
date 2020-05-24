@@ -89,6 +89,8 @@ App({
     houseList: "/api/user/house/list", //获取户型列表
     cartList: "/api/user/cart/list", //报价单
     orderList: "/api/user/order/list",//结算单
-    addAddress:"/api/user/address/add"
+    addAddress:"/api/user/address/add",//添加地址
+    houseId:"/api/user/house/id"//获取户型id
+
   }
 })

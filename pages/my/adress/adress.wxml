@@ -1,37 +1,26 @@
 <view class="container">
   <view class="box">
 
-    <view class="item">
-      <view>
-        <view class="title">碧桂园凤凰湾听涛湾10座1005房</view>
-        <view class="subtitleBox">
-          <view class="fontName">团长：李臻</view>
-          <view class="phoneImg">
-            <image src="../../../images/phoneIcon.png" />
-            <text>13434124520</text>
-          </view>
-        </view>
-      </view>
-      <view class="iconImg">
-        <image src="{{imgUrl +'rightIcon.png'}}"></image>
-      </view>
-    </view>
 
-    <view class="item">
-      <view>
-        <view class="title">碧桂园凤凰湾听涛湾10座1005房</view>
-        <view class="subtitleBox">
-          <view class="fontName">团长：李臻</view>
-          <view class="phoneImg">
-            <image src="../../../images/phoneIcon.png" />
-            <text>13434124520</text>
+      <view class="item" wx:for="{{addressData}}" wx:key="index" bindtap="addressHandle" data-item="{{item}}">
+            <view>
+              <view class="title">{{item.address}}</view>
+              <view class="subtitleBox">
+                <view class="fontName">团长：xx</view>
+                <view class="phoneImg">
+                  <image src="../../../images/phoneIcon.png" />
+                  <text>13434124520</text>
+                </view>
+              </view>
+            </view>
+            <view class="iconImg">
+              <image src="{{imgUrl +'rightIcon.png'}}"></image>
+            </view>
           </view>
-        </view>
-      </view>
-      <view class="iconImg">
-        <image src="{{imgUrl +'rightIcon.png'}}"></image>
-      </view>
-    </view>
+
+
+
+
 
 
   </view>

@@ -14,7 +14,7 @@ Page({
         communityArr: [],
         multiArray: [[0],[0],[0]],
 
-        //临时存放层
+        //当前选中的地方
         tempRoomData: {}
     },
     //通过位置获取社区
@@ -109,12 +109,60 @@ Page({
 
     // 确定选好的楼层
     bindMultiPickerChange: function (e) {
+        let that = this;
+        let list = storage.get_s("token");
+        let accountInfo = storage.get_s("userInfo");
+
+        let tower = e.detail.value[0]+1;
+        // let floor = e.detail.value[1]+1;
+        let house = e.detail.value[2]+1;
+
+        let dizhi = `${that.data.province}${that.data.city}${that.data.district}${that.data.tempRoomData.name}`;
+
+
+        let params = {
+            community_id:that.data.tempRoomData.id,
+            room_id:house,
+            tower_id:tower
+        };
+
+        app.xhr('GET', app.apiUrl.houseId, params, '', (res) => {
+            if (res.data.code == 0) {
+                let item = {
+                    access_token: list.access_token,
+                    account:"13246319384",
+                    phone:"13246319384",
+                    nickname:accountInfo.nickName,
+                    country:"中国",
+                    province:that.data.province,
+                    city:that.data.city,
+                    district:that.data.district,
+                    address:dizhi,
+                    house_id:res.data.data.house_id
+                };
+
+                app.xhr('POST', app.apiUrl.addAddress, item, '', (res1) => {
+                    if (res1.data.code == 0) {
+                        let showDataObj = {
+                            community_id:that.data.tempRoomData.id,
+                            room_id: res.data.data.house_id
+                        };
+                        storage.set('showDataObj',showDataObj);
+                        wx.switchTab({
+                            url: '../../index/index'
+                        })
+                    }
+                });
+            }
+        });
+
+
+
         this.setData({
             multiIndex: e.detail.value,
         })
 
     },
-
 
     // 点击选择楼层
     roomHandle: function (id) {
