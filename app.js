@@ -88,9 +88,12 @@ App({
     location: "/api/user/map/location", //根据经纬获取省市区
     houseList: "/api/user/house/list", //获取户型列表
     cartList: "/api/user/cart/list", //报价单
-    orderList: "/api/user/order/list",//结算单
-    addAddress:"/api/user/address/add",//添加地址
-    houseId:"/api/user/house/id"//获取户型id
-
+    orderList: "/api/user/order/list", //结算单
+    addAddress: "/api/user/address/add", //添加地址
+    houseId: "/api/user/house/id", //获取户型id
+    shopDetails: "/api/user/commodity/spu", //商品详情
+    cartAdd: "/api/user/cart/add", //添加购物车
+    commoditySku: "/api/user/commodity/sku", //获取sku详情
+    cartDel: "/api/user/cart/del" //购物车删除单个商品
   }
 })

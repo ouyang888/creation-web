@@ -3,25 +3,27 @@
 	<swiper autoplay="true" interval="3000" duration="500" circular="true" class="product-pic">
 		<block>
 			<swiper-item>
-				<view class="item" style="background:red;">1</view>
+				<view class="item">
+          <image src="{{detailsList.url}}"></image>
+        </view>
 			</swiper-item>
-			<swiper-item>
+			<!-- <swiper-item>
 				<view class="item" style="background:blue;">2</view>
 			</swiper-item>
 			<swiper-item>
 				<view class="item" style="background:green;">3</view>
-			</swiper-item>
+			</swiper-item> -->
 		</block>
 	</swiper>
 
 	<!-- 标题框 -->
 	<view class="product-title">
-		<view class="title-name">百变房铝合金窗</view>
+		<view class="title-name">{{detailsList.name}}</view>
 		<view class="title-second">
 			月售100　好评率96%
 		</view>
 		<view class="product-money-text">
-			<view class="money"><text class="rmb">¥</text>2100</view>
+			<view class="money"><text class="rmb">¥</text>{{detailsList.selling_total_price}}</view>
 			<view class="sum">总共1项</view>
 		</view>
 	</view>
@@ -32,92 +34,65 @@
 			<text class="line"></text>商品详情
 		</view>
 		<view class="detail">
-			<view class="item">
-				<text class="name">品牌 :</text>凤铝
+
+			<view class="item" wx:for="{{templateList}}" wx:for-item="item" wx:for-index="key" wx:key="index">
+				<text class="name">{{key}} :</text>{{item}}
 			</view>
-			<view class="item">
-				<text class="name">颜色 :</text>猪肝红
-			</view>
-			<view class="item">
-				<text class="name">材质 :</text>1.4厚铝合金
-			</view>
-			<view class="item">
-				<text class="name">单价 :</text>489元/平方米
-			</view>
-			<view class="item">
-				<text class="name">玻璃类型 :</text>6mm双层中空
-			</view>
+
 		</view>
 	</view>
 
 	<!-- 脚步 -->
 	<view class="product-footer">
-		<button type="default" class="back-btn">
+		<button type="default" class="back-btn" bindtap="backShopDetails">
 			<image class="icon" src="{{servenImg + 'product_back.png'}}"></image>
 			返回
 		</button>
-		<button type="default" class="cart-btn">
+		<button type="default" class="cart-btn" bindtap="showModel" data-item="{{detailsList}}">
 			<image class="icon" src="{{servenImg + 'icon_shop_cart_2.png'}}"></image>
 			加入购物车
 		</button>
 	</view>
 
 	<!-- 弹窗--选好了 -->
-	<view class="selsect-norms" style="display:none;">
-		<view class="product">
-			<view class="pic"></view>
-			<view class="detail">
-				<view class="title">
-					<view class="name">百变房铝合金窗</view>
-					<view class="clear">
-						<image class="list-clear" src="{{servenImg + 'order_list_clear.png'}}"></image>
-						清空
-					</view>
-				</view>
-				<view class="yisuan">
-					已选：加厚型、铝合金
-				</view>
-				<view class="money">
-					<text class="rmb">¥</text>2100
-				</view>
-			</view>
-		</view>
-		<scroll-view scroll-y="true" scroll-with-animation="true" class="material-selection-box">
-			<view class="selection-list">
-				<view class="title">材质</view>
-				<view class="list">
-					<view class="item">铝合金</view>
-					<view class="item">铁</view>
-					<view class="item cur">不锈钢</view>
-					<view class="item">铜</view>
-					<view class="item">铝镍合金</view>
-				</view>
-			</view>
-			<view class="selection-list">
-				<view class="title">工艺</view>
-				<view class="list">
-					<view class="item">铝合金</view>
-					<view class="item cur">铁</view>
-					<view class="item">不锈钢</view>
-					<view class="item">铜</view>
-					<view class="item">铝镍合金</view>
-				</view>
-			</view>
-			<view class="selection-list">
-				<view class="title">材质</view>
-				<view class="list">
-					<view class="item cur">铝合金</view>
-					<view class="item">铁</view>
-					<view class="item">不锈钢</view>
-					<view class="item">铜</view>
-					<view class="item">铝镍合金</view>
-				</view>
-			</view>
-		</scroll-view>
-		<view class="have-chosen-box">
-			<button class="have-chosen-btn">选好了</button>
-		</view>
-	</view>
+	 <view class="selsect-norms" wx:if="{{showCartModel}}">
+    <view class="product">
+      <view class="pic">
+        <image src="{{detailsList.url}}"></image>
+      </view>
+      <view class="detail">
+        <view class="title">
+          <view class="name">{{detailsList.name}}</view>
+          <view class="clear">
+            <image class="list-clear" src="{{servenImg + 'order_list_clear.png'}}"></image>
+            清空
+          </view>
+        </view>
+
+        <view class="yisuan">
+          已选：{{selected}}
+        </view>
+
+        <view class="money">
+          <text class="rmb">¥</text>{{detailsList.selling_total_price}}
+        </view>
+      </view>
+    </view>
+    <scroll-view scroll-y="true" scroll-with-animation="true" class="material-selection-box">
+
+      <view class="selection-list" wx:for="{{templateListInfo}}" wx:for-item="item" wx:for-index="key" wx:key="index">
+        <view class="title">{{key}}</view>
+        <view class="list">
+          <view class="{{changeIndex === index ? 'item cur' : 'item' }}" wx:for="{{item}}" data-item="{{items}}" wx:for-item="items" wx:key="{{index}}" data-id="{{index}}" bindtap="changeType">{{items}}</view>
+        </view>
+      </view>
+
+
+    </scroll-view>
+    <view class="have-chosen-box" bindtap="addCartNum" data-id="{{detailsList}}" >
+      <button class="have-chosen-btn">选好了</button>
+    </view>
+  </view>
 	<!--黑色背景-->
-	<view class="black-background" style="display:none;"></view>
+	<view class="black-background" wx:if="{{showCartModel}}" bindtap="hideModel"></view>
 </view>

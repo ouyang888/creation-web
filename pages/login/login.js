@@ -67,9 +67,12 @@ Page({
           storage.set("token", res.data.data)
         }
       })
-      wx.switchTab({
-        url: '../index/index'
-      })
+      setTimeout(()=>{
+        wx.redirectTo({
+          url: '../my/adress/adress'
+        })
+      },500)
+     
     }
   },
 

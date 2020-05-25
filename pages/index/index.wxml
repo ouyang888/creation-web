@@ -1,151 +1,201 @@
 <!--index.wxml-->
 
 <view class="home">
-	<!-- 左侧栏 -->
-	<scroll-view scroll-y="true" scroll-with-animation="true" class="left-tab">
-		<view class="{{leftTabActived===index? 'item-tab cur':'item-tab'}}" bindtap="handleTab" data-index="{{index}}" wx:for="{{tabList}}" wx:for-index="index" wx:for-item="itemName" wx:key="index">
-			<view class="{{leftTabActived===index? 'cur-line':''}}"></view>
-			{{itemName}}
-		</view>
-		<view class="item-tab"></view>
-	</scroll-view>
+  <!-- 左侧栏 -->
+  <scroll-view scroll-y="true" scroll-with-animation="true" class="left-tab">
+    <view class="{{leftTabActived === item.id? 'item-tab cur':'item-tab'}}" bindtap="handleTab" data-id="{{item.id}}" wx:for="{{tabList}}" wx:for-index="index" wx:key="index">
+      <view class="{{leftTabActived===item.id? 'cur-line':''}}"></view>
+      {{item.name}}
+    </view>
+    <view class="item-tab"></view>
+  </scroll-view>
 
-	<!-- 右侧-商品列表-推荐套餐 -->
-	<scroll-view scroll-y="true" scroll-with-animation="true" class="right-list">
-		<view class="item-product" wx:for="{{productList}}" wx:key="index" >
-			<view class="title" bindtap="handleTitle" data-index="{{index}}">
-				<view>{{item.projectName}}</view>
-				<image lazy-load="true" class="icon-bottom" src="{{servenImg + 'icon_arrow_bottom.png'}}"></image>
-			</view>
-			<view class="product-list" bindtap="gotoDetails">
-				<view class="item" wx:for="{{item.product}}" wx:key="id">
-					<view class="pic"></view>
-					<view class="detail">
-						<view class="product-name">
-							<text>{{item.productName}}</text>
-							<image lazy-load="true" src="{{servenImg + 'icon_tag.png'}}" class="product-icon"></image>
-							<image lazy-load="true" src="{{servenImg + 'icon_hot.png'}}" class="product-icon"></image>
-							<image lazy-load="true" src="{{servenImg + 'icon_good.png'}}" class="product-icon"></image>
-						</view>
-						<view class="product-size-name">{{item.productSizeName}}</view>
-						<view class="product-type-list">
-							<view class="item" wx:for="{{item.productType}}" wx:key="id">{{item.name}}</view>
-						</view>
-						<view class="product-money">
-							<view class="money-num"><text class="money-rmb">¥</text>{{item.productMoney}}</view>
-							<image lazy-load="true" src="{{servenImg + 'product_add.png'}}" class="product-handle"></image>
-						</view>
-					</view>
-				</view>
-			</view>
-		</view>
-	</scroll-view>
+  <!-- 右侧-商品列表-推荐套餐 -->
+  <!-- <scroll-view scroll-y="true" scroll-with-animation="true" class="right-list">
+    <view class="item-product" wx:for="{{productList}}" wx:key="index">
+      <view class="title" bindtap="handleTitle" data-index="{{index}}">
+        <view>{{item.projectName}}</view>
+        <image lazy-load="true" class="icon-bottom" src="{{servenImg + 'icon_arrow_bottom.png'}}"></image>
+      </view>
+      <view class="product-list" bindtap="gotoDetails">
+        <view class="item" wx:for="{{item.product}}" wx:key="id" wx:if="{{selectedFlag[0]}}">
+          <view class="pic"></view>
+          <view class="detail">
+            <view class="product-name">
+              <text>{{item.productName}}</text>
+              <image lazy-load="true" src="{{servenImg + 'icon_tag.png'}}" class="product-icon"></image>
+              <image lazy-load="true" src="{{servenImg + 'icon_hot.png'}}" class="product-icon"></image>
+              <image lazy-load="true" src="{{servenImg + 'icon_good.png'}}" class="product-icon"></image>
+            </view>
+            <view class="product-size-name">{{item.productSizeName}}</view>
+            <view class="product-type-list">
+              <view class="item" wx:for="{{item.productType}}" wx:key="id">{{item.name}}</view>
+            </view>
+            <view class="product-money">
+              <view class="money-num">
+                <text class="money-rmb">¥</text>{{item.productMoney}}</view>
+              <image lazy-load="true" src="{{servenImg + 'product_add.png'}}" class="product-handle"></image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view> -->
 
-	<!-- 右侧-商品列表-商品 -->
-	<scroll-view scroll-y="true" scroll-with-animation="true" class="right-list" style="display:none;">
-		<view class="item-product not-project" wx:for="{{productList}}" wx:key="index">
-			<view class="product-list">
-				<view class="item" wx:for="{{item.product}}" wx:key="id">
-					<view class="pic"></view>
-					<view class="detail">
-						<view class="product-name">
-							<text>{{item.productName}}</text>
-							<image lazy-load="true" src="{{servenImg + 'icon_tag.png'}}" class="product-icon"></image>
-							<image lazy-load="true" src="{{servenImg + 'icon_hot.png'}}" class="product-icon"></image>
-							<image lazy-load="true" src="{{servenImg + 'icon_good.png'}}" class="product-icon"></image>
-						</view>
-						<view class="product-size-name">{{item.productSizeName}}</view>
-						<view class="product-type-list">
-							<view class="item" wx:for="{{item.productType}}" wx:key="id">{{item.name}}</view>
-						</view>
-						<view class="product-money">
-							<view class="money-num"><text class="money-rmb">¥</text>{{item.productMoney}}</view>
-							<image lazy-load="true" src="{{servenImg + 'product_add.png'}}" class="product-handle"></image>
-						</view>
-					</view>
-				</view>
-			</view>
-		</view>
+  <!-- 右侧-商品列表-商品 -->
+  <scroll-view scroll-y="true" scroll-with-animation="true" class="right-list">
+    <view class="item-product not-project" wx:for="{{shopInfo}}" wx:key="index" wx:if="{{shopInfo.length!=0}}">
+      <view class="product-list">
+        <view class="item">
+          <view class="pic" bindtap="gotoDetails" data-index="{{item}}">
+            <image class="img" src="{{item.url}}"></image>
+          </view>
+          <view class="detail">
+            <view class="product-name">
+              <text>{{item.name}}</text>
+              <image lazy-load="true" src="{{servenImg + 'icon_tag.png'}}" class="product-icon"></image>
+              <image lazy-load="true" src="{{servenImg + 'icon_hot.png'}}" class="product-icon"></image>
+              <image lazy-load="true" src="{{servenImg + 'icon_good.png'}}" class="product-icon"></image>
+            </view>
+            <view class="product-size-name">{{item.specifications}}</view>
+            <!-- <view class="product-type-list">
+              <view class="item" wx:for="{{item.productType}}" wx:key="id">{{item.name}}</view>
+            </view> -->
+            <view class="product-money">
+              <view class="money-num">
+                <text class="money-rmb">¥</text>{{item.selling_total_price}}</view>
+              <image lazy-load="true" src="{{servenImg + 'product_add.png'}}" class="product-handle" bindtap="addCartNum" wx:if="{{showAddImg && item.is_multi_specification == 0}}" data-id="{{item}}"></image>
+              <view class="specificationFont" bindtap="showSpecificationModel" data-item="{{item}}" wx:if="{{item.is_multi_specification == 1}}">多规格</view>
+              <image lazy-load="true" src="{{servenImg + 'product_del.png'}}" class="product-handle" bindtap="reduceCartNum" wx:if="{{!showAddImg}}" data-id="index"></image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{shopInfo.length==0}}" class="nothingShop">暂无商品</view>
+  </scroll-view>
+
+  <!-- 下体-下单 -->
+  <view class="lower-box">
+    <!-- 非下单状态 -->
+    <view class="lower-body" bindtap="cartMsg" wx:if="{{!showCart}}">
+      <view class="icon-shop-cart">
+        <image class="shop-cart" src="{{servenImg + 'icon_shop_cart.png'}}"></image>
+        <view class="goods-num">{{quotationInfo.length}}</view>
+      </view>
+      <view class="lower-text">
+        <text>致电咨询</text>
+        <image mode="aspectFill" lazy-load="true" src="{{servenImg + 'icon_phone.png'}}" class="lower-icon-phone"></image>
+        <text>13434124520</text>
+      </view>
+      <view class="lower-money">
+        <text class="lower-rmb">¥</text>{{quotationObj.order_total_price == ''|| quotationObj.order_total_price == undefined || quotationObj.order_total_price == null? 0 : quotationObj.order_total_price}}
+      </view>
+    </view>
+
+    <!-- 可下单状态 -->
+    <view class="lower-body" wx:if="{{showCart}}">
+      <view class="lower-text order">
+        <image mode="aspectFill" lazy-load="true" src="{{servenImg + 'icon_phone.png'}}" class="lower-icon-phone"></image>
+        <text>13434124520</text>
+        <text class="order-money"><text class="order-rmb">¥</text>{{quotationObj.order_total_price == ''|| quotationObj.order_total_price == undefined || quotationObj.order_total_price == null? 0 : quotationObj.order_total_price}}</text>
+      </view>
+      <view class="lower-money lower-plact-order">
+        去下单
+      </view>
+    </view>
+  </view>
+
+  <!-- 购物车-商品列表 -->
+  <view class="order-list-box" wx:if="{{showCart}}">
+    <view class="order-boby">
+      <view class="order-title">
+        <view class="left">
+          <image class="order-bage" src="{{servenImg + 'order_bage.png'}}"></image>
+          <view class="order-select-total" bindtap="cartHide">已选商品 (共{{quotationInfo.length}}项)</view>
+        </view>
+        <!-- <view class="right">
+          <image class="order-list-clear" src="{{servenImg + 'order_list_clear.png'}}"></image>
+          <text>清空</text>
+        </view> -->
+      </view>
+      <scroll-view scroll-y="true" scroll-with-animation="true" class="order-list">
+        <view class="list" wx:for="{{quotationInfo}}" wx:key="{{index}}">
+          <view class="item">
+            <view class="goods-pic">
+              <image src="{{item.good_img}}"></image>
+            </view>
+            <view class="goods-detail">
+              <view class="name">
+                {{item.name}}
+                <image lazy-load="true" src="{{servenImg + 'icon_tag.png'}}" class="product-icon"></image>
+                <image lazy-load="true" src="{{servenImg + 'icon_hot.png'}}" class="product-icon"></image>
+                <image lazy-load="true" src="{{servenImg + 'icon_good.png'}}" class="product-icon"></image>
+              </view>
+              <view class="product-size-name">{{item.own_spec}}</view>
+              <!-- <view class="goods-type-list">
+                <view class="type-item">加厚型</view>
+                <view class="type-item">铝合金</view>
+              </view> -->
+              <view class="goods-money">
+                <view class="money">
+                  <text class="rmb">¥</text>{{item.price}}</view>
+                <view class="goods-handle">
+                  <image lazy-load="true" src="{{servenImg + 'product_del.png'}}" bindtap="delCatrShop" data-id="{{item}}" class="product-handle"></image>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  
+
+  <!-- 弹窗--选好了 -->
+  <!-- <view class="selsect-norms" wx:if="{{showCartModel}}">
+    <view class="product">
+      <view class="pic">
+        <image src="{{shopModelList.url}}"></image>
+      </view>
+      <view class="detail">
+        <view class="title">
+          <view class="name">{{shopModelList.name}}</view>
+          <view class="clear">
+            <image class="list-clear" src="{{servenImg + 'order_list_clear.png'}}"></image>
+            清空
+          </view>
+        </view>
+
+        <view class="yisuan">
+          已选：{{selected}}
+        </view>
+
+        <view class="money">
+          <text class="rmb">¥</text>{{shopModelList.selling_total_price}}
+        </view>
+      </view>
+    </view>
+    <scroll-view scroll-y="true" scroll-with-animation="true" class="material-selection-box">
+
+      <view class="selection-list" wx:for="{{templateList}}" wx:for-item="item" wx:for-index="key" wx:key="index">
+        <view class="title">{{key}}</view>
+        <view class="list">
+          <view class="{{changeIndex === index ? 'item cur' : 'item' }}" wx:for="{{item}}" data-item="{{items}}" wx:for-item="items" wx:key="{{index}}" data-id="{{index}}" bindtap="changeType">{{items}}</view>
+        </view>
+      </view>
 
 
+    </scroll-view>
+    <view class="have-chosen-box" bindtap="addCartNum" data-id="{{shopModelList}}">
+      <button class="have-chosen-btn">选好了</button>
+    </view>
+  </view> -->
+  
+  <view class="black-background" wx:if="{{showCartModel}}" bindtap="hideModel"></view>
 
 
-
-
-
-	</scroll-view>
-
-	<!-- 下体-下单 -->
-	<view class="lower-box">
-		<!-- 非下单状态 -->
-		<view class="lower-body" style="display:none">
-			<view class="icon-shop-cart">
-				<image class="shop-cart" src="{{servenImg + 'icon_shop_cart.png'}}"></image>
-				<view class="goods-num">4</view>
-			</view>
-			<view class="lower-text">
-				<text>致电咨询</text>
-				<image mode="aspectFill" lazy-load="true" src="{{servenImg + 'icon_phone.png'}}" class="lower-icon-phone"></image>
-				<text>13434124520</text>
-			</view>
-			<view class="lower-money">
-				<text class="lower-rmb">¥</text>1202024.51
-			</view>
-		</view>
-
-		<!-- 可下单状态 -->
-		<view class="lower-body" style="">
-			<view class="lower-text order">
-				<image mode="aspectFill" lazy-load="true" src="{{servenImg + 'icon_phone.png'}}" class="lower-icon-phone"></image>
-				<text>13434124520</text>
-				<text class="order-money"><text class="order-rmb">¥</text>992221.51</text>
-			</view>
-			<view class="lower-money lower-plact-order">
-					去下单
-			</view>
-		</view>
-	</view>
-
-	<!-- 购物车-商品列表 -->
-	<view class="order-list-box" style="display:none">
-		<view class="order-boby">
-			<view class="order-title">
-				<view class="left">
-					<image class="order-bage" src="{{servenImg + 'order_bage.png'}}"></image>
-					<view class="order-select-total">已选商品 (共4项)</view>
-				</view>
-				<view class="right">
-					<image class="order-list-clear" src="{{servenImg + 'order_list_clear.png'}}"></image>
-					<text>清空</text>
-				</view>
-			</view>
-			<scroll-view scroll-y="true" scroll-with-animation="true" class="order-list">
-				<view class="list">
-						<view class="item">
-							<view class="goods-pic">pic</view>
-							<view class="goods-detail">
-								<view class="name">
-									百变房铝合金窗
-										<image lazy-load="true" src="{{servenImg + 'icon_tag.png'}}" class="product-icon"></image>
-										<image lazy-load="true" src="{{servenImg + 'icon_hot.png'}}" class="product-icon"></image>
-										<image lazy-load="true" src="{{servenImg + 'icon_good.png'}}" class="product-icon"></image>
-								</view>
-								<view class="goods-type-list">
-									<view class="type-item">加厚型</view>
-									<view class="type-item">铝合金</view>
-								</view>
-								<view class="goods-money">
-									<view class="money"><text class="rmb">¥</text>2100</view>
-									<view class="goods-handle">
-										<image lazy-load="true" src="{{servenImg + 'product_add.png'}}" class="product-handle"></image>
-										<text class="num">12</text>
-										<image lazy-load="true" src="{{servenImg + 'product_del.png'}}" class="product-handle"></image>
-									</view>
-								</view>
-							</view>
-						</view>
-				</view>
-			</scroll-view>
-		</view>	
-	</view>
 </view>
+<!-- 黑色背景
+  <view class="black-background" wx:if="{{showCartModel}}" bindtap="hideModel"></view> -->
