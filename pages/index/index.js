@@ -20,7 +20,8 @@ Page({
     shopModelList: "",
     templateList: "",
     changeIndex: 0,
-    selected: ""
+    selected: "",
+    animationData:{}
   },
 
   //点击切换规格
@@ -79,7 +80,7 @@ Page({
           if (res1.data.code == 0) {
             app.toast("添加购物车成功")
             that.setData({
-              showCartModel: false,
+              showCartModel: true,
               showCart: true,
             },()=>{
               that.cartInfo();
@@ -91,7 +92,7 @@ Page({
     })
   },
 
-  //弹框减号删除购物车单个商品
+  //弹框--减号删除购物车单个商品
   delCatrShop: function(e) {
     let that = this
     let token = storage.get_s("token")
@@ -106,8 +107,8 @@ Page({
     app.xhr('POST', app.apiUrl.cartDel, item, '', (res) => {
       if (res.data.code == 0) {
         app.toast("删除成功");
-        this.shopList();
         this.cartInfo();
+        this.shopList();
       }
     })
   },
@@ -144,7 +145,7 @@ Page({
           quotationObj: items
         })
         // console.log(newArr);
-       
+
       }
     })
   },
@@ -171,7 +172,6 @@ Page({
       showCartModel: true,
       shopModelList: e.currentTarget.dataset.item,
       templateList: modifyTmep,
-
     })
   },
 
@@ -201,6 +201,10 @@ Page({
     this.cartInfo();
   },
   onLoad: function() {
+    let shopdata = storage.get_s("showDataObj");
+    wx.setNavigationBarTitle({
+      title:shopdata.address
+    })
     this.setData({
       showUser: storage.get_s("userInfo"),
       servenImg: app.uploadImg.url,
@@ -256,28 +260,24 @@ Page({
     app.xhr('GET', app.apiUrl.shopList, item, '', (res) => {
       if (res.data.code == 0) {
         let newArr = res.data.data.map(item => {
+          item.isAddCart = false;
           item.specifications = item.specifications.substr(1);
           item.specifications = item.specifications.substr(0, item.specifications.length - 1);
           return item;
-        })
+        });
+
+        newArr.forEach(item=>{
+          that.data.quotationInfo.forEach(cart=>{
+            if(item.id == cart.good_id){
+              item.isAddCart = true;
+            }else{
+              item.isAddCart = false;
+            }
+          })
+        });
         that.setData({
           shopInfo: newArr
-        }, () => {
-          that.data.shopInfo.forEach(item => {
-            // if (that.data.quotationInfo != ''){
-              that.data.quotationInfo.forEach(data => {
-                if (item.id == data.good_id) {
-                  that.setData({
-                    showAddImg: false
-                  })
-                }
-              })
-            // }
-          })
         })
-        // that.setData({
-        //   shopInfo: res.data.data
-        // })
       }
     })
   },
@@ -310,6 +310,8 @@ Page({
               if (item.id == data.good_id) {
                 that.setData({
                   showAddImg: false
+                },()=>{
+                  that.shopList();
                 })
               }
             })
@@ -331,5 +333,9 @@ Page({
     this.setData({
       selectedFlag: this.data.selectedFlag
     })
+  },
+
+  noneEnoughPeople(){
+
   }
 })

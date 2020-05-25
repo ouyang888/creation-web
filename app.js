@@ -9,7 +9,6 @@ App({
     // 登录
     wx.login({
       success: res => {
-        console.log("888", res)
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
       }
     })
@@ -38,7 +37,7 @@ App({
     userInfo: null
   },
   //弹框
-  toast: function(title, icon, cb, duration = 2500) {
+  toast: function(title, icon, cb, duration = 500) {
     wx.showToast({
       title,
       icon,

@@ -1,12 +1,13 @@
 <!--index.wxml-->
 
-<view class="home">
+<view class="home" catchtouchmove="noneEnoughPeople">
   <!-- 左侧栏 -->
   <scroll-view scroll-y="true" scroll-with-animation="true" class="left-tab">
     <view class="{{leftTabActived === item.id? 'item-tab cur':'item-tab'}}" bindtap="handleTab" data-id="{{item.id}}" wx:for="{{tabList}}" wx:for-index="index" wx:key="index">
       <view class="{{leftTabActived===item.id? 'cur-line':''}}"></view>
       {{item.name}}
     </view>
+    <view class="item-tab"></view>
     <view class="item-tab"></view>
   </scroll-view>
 
@@ -64,9 +65,9 @@
             <view class="product-money">
               <view class="money-num">
                 <text class="money-rmb">¥</text>{{item.selling_total_price}}</view>
-              <image lazy-load="true" src="{{servenImg + 'product_add.png'}}" class="product-handle" bindtap="addCartNum" wx:if="{{showAddImg && item.is_multi_specification == 0}}" data-id="{{item}}"></image>
+              <image lazy-load="true" src="{{servenImg + 'product_add.png'}}" class="product-handle" bindtap="addCartNum" wx:if="{{!item.isAddCart && item.is_multi_specification == 0}}" data-id="{{item}}"></image>
               <view class="specificationFont" bindtap="showSpecificationModel" data-item="{{item}}" wx:if="{{item.is_multi_specification == 1}}">多规格</view>
-              <image lazy-load="true" src="{{servenImg + 'product_del.png'}}" class="product-handle" bindtap="reduceCartNum" wx:if="{{!showAddImg}}" data-id="index"></image>
+              <image lazy-load="true" src="{{servenImg + 'product_del.png'}}" class="product-handle" bindtap="reduceCartNum" wx:if="{{item.isAddCart}}" data-id="index"></image>
             </view>
           </view>
         </view>
@@ -121,7 +122,7 @@
         </view> -->
       </view>
       <scroll-view scroll-y="true" scroll-with-animation="true" class="order-list">
-        <view class="list" wx:for="{{quotationInfo}}" wx:key="{{index}}">
+        <view class="list" wx:for="{{quotationInfo}}" wx:key="index">
           <view class="item">
             <view class="goods-pic">
               <image src="{{item.good_img}}"></image>
@@ -151,7 +152,7 @@
       </scroll-view>
     </view>
   </view>
-  
+
 
   <!-- 弹窗--选好了 -->
   <!-- <view class="selsect-norms" wx:if="{{showCartModel}}">
@@ -192,7 +193,7 @@
       <button class="have-chosen-btn">选好了</button>
     </view>
   </view> -->
-  
+
   <view class="black-background" wx:if="{{showCartModel}}" bindtap="hideModel"></view>
 
 
