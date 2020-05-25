@@ -1,4 +1,10 @@
 /**index.wxss**/
+.home .left-tab ::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+  display: none;
+}
 
 .home {
   display: flex;
@@ -11,11 +17,7 @@
   background-color: #f8f9fb;
 }
 
-.home .left-tab::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-  color: transparent;
-}
+
 
 .home .left-tab .item-tab {
   position: relative;
@@ -649,5 +651,5 @@ to {bottom: 98rpx;}
 }
 
 .order-list-box{
-  animation: myfirst 0.5s;
+  animation: myfirst 0.3s;
 }
