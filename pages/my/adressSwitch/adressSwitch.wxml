@@ -16,7 +16,7 @@
     </view>
     <view class="searchBox">
         <!-- <image src="{{locationImg + 'search.png'}}" /> -->
-        <input class="weui-input" auto-focus placeholder="输入您指定小区名称"/>
+        <input class="weui-input" placeholder="输入您指定小区名称"/>
     </view>
     <view class="box">
         <view wx:for="{{communityArr}}" wx:key="index" bindtap="roomHandle" data-id="{{item.id}}">

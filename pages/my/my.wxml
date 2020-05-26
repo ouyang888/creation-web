@@ -6,7 +6,7 @@
       </view>
       <view style="padding-left:48rpx;">
         <view class="userName">{{showUser.nickName}}</view>
-        <view class="phone">13434124520</view>
+        <view class="phone">{{userPhone}}</view>
       </view>
     </view>
   </view>

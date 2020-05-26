@@ -93,6 +93,7 @@ App({
     shopDetails: "/api/user/commodity/spu", //商品详情
     cartAdd: "/api/user/cart/add", //添加购物车
     commoditySku: "/api/user/commodity/sku", //获取sku详情
-    cartDel: "/api/user/cart/del" //购物车删除单个商品
+    cartDel: "/api/user/cart/del", //购物车删除单个商品
+    profileList:"/api/user/profile/list",//获取用户列表信息
   }
 })

@@ -280,7 +280,6 @@
 .home .order-list-box {
   position: fixed;
   width: 100vw;
-  height: 360px;
   bottom: 98rpx;
   z-index: 4;
   color: #fff;
@@ -649,7 +648,17 @@ button:not([size='mini']) {
 from {bottom: -621rpx;}
 to {bottom: 98rpx;}
 }
+@keyframes norms
+{
+  from {bottom: -340rpx;}
+  to {bottom: 0;}
+}
 
 .order-list-box{
   animation: myfirst 0.3s;
 }
+
+.selsect-norms{
+  animation: norms 0.3s;
+}
+

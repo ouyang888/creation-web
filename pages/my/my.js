@@ -4,7 +4,8 @@ let storage = require("../../utils/storage.js")
 Page({
   data: {
     servenImg: "",
-    showUser: ""
+    showUser: "",
+    userPhone:""
   },
 
   /**
@@ -17,7 +18,27 @@ Page({
     this.setData({
       showUser: storage.get_s("userInfo")
     })
+
+    this.getUserPhone();
   },
+
+
+  // 获取用户电话号码
+  getUserPhone(){
+    let that = this;
+    let token = storage.get_s("token")
+    let items = {
+      access_token: token.access_token,
+    }
+    app.xhr('GET', app.apiUrl.profileList, items, '', (res) => {
+      if (res.data.code == 0) {
+        that.setData({
+          userPhone: res.data.data[0].phone,
+        })
+      }
+    })
+  },
+
   gotoOffer: function() {
     wx.navigateTo({
       url: './settlement/settlement',

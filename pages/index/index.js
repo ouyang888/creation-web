@@ -102,7 +102,6 @@ Page({
   },
 
   //商品列表删除购物车商品
-
   delShopListCart: function(e) {
     let that = this
     let token = storage.get_s("token")
@@ -196,20 +195,43 @@ Page({
     })
   },
 
+  // 规格数据获取
   showSpecificationModel: function(e) {
     let that = this
-    let modifyTmep = JSON.parse(e.currentTarget.dataset.item.spec_template)
+    let modifyTmep = JSON.parse(e.currentTarget.dataset.item.spec_template);
     Object.keys(modifyTmep).forEach(function(key) {
-      for (var i in modifyTmep) {
+      for (let i in modifyTmep) {
         that.setData({
           selected: key + ':' + modifyTmep[i][that.data.changeIndex]
         })
       }
-    })
+    });
     that.setData({
       showCartModelType: true,
       shopModelList: e.currentTarget.dataset.item,
       templateList: modifyTmep,
+    },()=>{
+      let id = storage.get_s("showDataObj");
+      console.log(id)
+      // let items = {
+      //   community_id:id.community_id,
+      //   house_type_id:id.house_id,
+      //   sku:
+      //   product_spu_id
+      // }
+
+
+      // app.xhr('GET', app.apiUrl.commoditySku, item, '', (res) => {
+      //   if (res.data.code == 0) {
+      //     that.setData({
+      //       tabList: res.data.data,
+      //       leftTabActived: res.data.data[0].id
+      //     })
+      //     this.shopList();
+      //   }
+      // })
+      // console.log(that.data.shopModelList);
+      console.log(that.data.templateList);
     })
   },
 
@@ -237,6 +259,13 @@ Page({
   onShow: function() {
     this.category();
     this.cartInfo();
+  },
+  onHide:function(){
+    this.setData({
+      showCart:false,
+      showCartModel:false,
+      showCartModelType:false,
+    });
   },
   onLoad: function() {
     let shopdata = storage.get_s("showDataObj");
@@ -373,7 +402,5 @@ Page({
     })
   },
 
-  noneEnoughPeople() {
-
-  }
+  noneEnoughPeople() {}
 })

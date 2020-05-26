@@ -64,7 +64,10 @@
             </view> -->
             <view class="product-money">
               <view class="money-num">
-                <text class="money-rmb">¥</text>{{item.selling_total_price}}</view>
+                <block wx:if="{{item.selling_total_price !==null}}">
+                  <text class="money-rmb">¥</text>{{item.selling_total_price}}
+                </block>
+              </view>
               <image lazy-load="true" src="{{servenImg + 'product_add.png'}}" class="product-handle" bindtap="addCartNum" wx:if="{{!item.isAddCart && item.is_multi_specification == 0}}" data-id="{{item}}"></image>
               <view class="specificationFont" bindtap="showSpecificationModel" data-item="{{item}}" wx:if="{{item.is_multi_specification == 1}}">多规格</view>
               <image lazy-load="true" src="{{servenImg + 'product_del.png'}}" class="product-handle" bindtap="delShopListCart" wx:if="{{item.isAddCart}}" data-id="{{item}}" ></image>
@@ -154,7 +157,7 @@
   </view>
 
 
-  <!-- 弹窗--选好了 -->
+  <!-- 弹窗--多规格 -->
   <view class="selsect-norms" wx:if="{{showCartModelType}}">
     <view class="product">
       <view class="pic">
@@ -179,15 +182,14 @@
       </view>
     </view>
     <scroll-view scroll-y="true" scroll-with-animation="true" class="material-selection-box">
-
       <view class="selection-list" wx:for="{{templateList}}" wx:for-item="item" wx:for-index="key" wx:key="index">
         <view class="title">{{key}}</view>
         <view class="list">
-          <view class="{{changeIndex === index ? 'item cur' : 'item' }}" wx:for="{{item}}" data-item="{{items}}" wx:for-item="items" wx:key="index" data-id="{{index}}" bindtap="changeType">{{items}}</view>
+          <view class="{{changeIndex === index ? 'item cur' : 'item' }}" wx:for="{{item}}" data-item="{{items}}" wx:for-item="items" wx:key="index" data-id="{{index}}" bindtap="changeType">
+            {{items}}
+          </view>
         </view>
       </view>
-
-
     </scroll-view>
     <view class="have-chosen-box" bindtap="addCartNum" data-id="{{shopModelList}}">
       <button class="have-chosen-btn">选好了</button>
