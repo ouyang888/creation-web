@@ -1,7 +1,7 @@
 <view class="container">
   <view class="box">
 
-    <view class="item" wx:for="{{quotationInfo}}" wx:key="index">
+    <view class="item" wx:for="{{quotationInfo}}" wx:key="index" wx:if="{{quotationInfo.length != 0}}">
       <view class="shopImgs">
         <image src="{{item.good_img}}"></image>
       </view>
@@ -24,6 +24,8 @@
       </view>
     </view>
 
+    <view wx:if="{{quotationInfo.length == 0}}"  class="nothingCart">购物车空，暂无报价</view>
+
 
     <view class="monBottomBox">
       <view class="flexBox">
@@ -34,10 +36,10 @@
 
 
 
-    <view class="foot-btn-group">
+    <!-- <view class="foot-btn-group">
       <button class="item-btn left-btn">验收</button>
       <button class="item-btn right-btn">取消</button>
-    </view>
+    </view> -->
 
 
 

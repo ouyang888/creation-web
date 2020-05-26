@@ -8,7 +8,8 @@ Page({
   data: {
     imgUrl: "",
     settlmentInfo: "",
-    quotationObj: ""
+    quotationObj: "",
+    quotationInfo:[]
   },
 
   //报价单列表
@@ -25,14 +26,17 @@ Page({
     app.xhr('GET', app.apiUrl.cartList, item, '', (res) => {
       if (res.data.code == 0) {
         let items = res.data.data;
-        let newArr = res.data.data.cart.map(item => {
-          item.own_spec = item.own_spec.substr(1);
-          item.own_spec = item.own_spec.substr(0, item.own_spec.length - 1);
-          return item
-        });
-        // console.log(newArr);
+        if (items.cart != undefined && items.cart != null && items.cart != '') {
+          let newArr = res.data.data.cart.map(item => {
+            item.own_spec = item.own_spec.substr(1);
+            item.own_spec = item.own_spec.substr(0, item.own_spec.length - 1);
+            return item
+          });
+          that.setData({
+            quotationInfo: newArr
+          })
+        }
         that.setData({
-          quotationInfo: newArr,
           quotationObj: items
         })
       }

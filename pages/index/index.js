@@ -21,7 +21,15 @@ Page({
     templateList: "",
     changeIndex: 0,
     selected: "",
-    animationData:{}
+    animationData: {},
+    showCartModelType: false
+  },
+
+  //去下单按钮
+  gotoQuotation: function() {
+    wx.navigateTo({
+      url: '../my/quotation/quotation',
+    })
   },
 
   //点击切换规格
@@ -80,14 +88,37 @@ Page({
           if (res1.data.code == 0) {
             app.toast("添加购物车成功")
             that.setData({
+              showCartModelType: false,
               showCartModel: true,
               showCart: true,
-            },()=>{
+            }, () => {
               that.cartInfo();
               that.shopList();
             })
           }
         })
+      }
+    })
+  },
+
+  //商品列表删除购物车商品
+
+  delShopListCart: function(e) {
+    let that = this
+    let token = storage.get_s("token")
+    let shopdata = storage.get_s("showDataObj")
+    let item = {
+      access_token: token.access_token,
+      community_id: shopdata.community_id,
+      house_type_id: shopdata.house_id,
+      address_id: shopdata.address_id,
+      good_id: e.currentTarget.dataset.id.id.toString(),
+    }
+    app.xhr('POST', app.apiUrl.cartDel, item, '', (res) => {
+      if (res.data.code == 0) {
+        app.toast("删除成功");
+        this.cartInfo();
+        this.shopList();
       }
     })
   },
@@ -136,7 +167,7 @@ Page({
           that.setData({
             quotationInfo: newArr,
           })
-        }else{
+        } else {
           that.setData({
             quotationInfo: [],
           })
@@ -153,8 +184,15 @@ Page({
   hideModel: function() {
     let that = this
     that.setData({
-      showCart:false,
+      showCart: false,
       showCartModel: false
+    })
+  },
+
+  hideTypeModel: function() {
+    let that = this
+    that.setData({
+      showCartModelType: false,
     })
   },
 
@@ -169,7 +207,7 @@ Page({
       }
     })
     that.setData({
-      showCartModel: true,
+      showCartModelType: true,
       shopModelList: e.currentTarget.dataset.item,
       templateList: modifyTmep,
     })
@@ -186,7 +224,7 @@ Page({
   cartMsg: function() {
     this.setData({
       showCart: true,
-      showCartModel:true
+      showCartModel: true
     });
   },
   cartHide: function() {
@@ -203,7 +241,7 @@ Page({
   onLoad: function() {
     let shopdata = storage.get_s("showDataObj");
     wx.setNavigationBarTitle({
-      title:shopdata.address
+      title: shopdata.address
     })
     this.setData({
       showUser: storage.get_s("userInfo"),
@@ -266,11 +304,11 @@ Page({
           return item;
         });
 
-        newArr.forEach(item=>{
-          that.data.quotationInfo.forEach(cart=>{
-            if(item.id == cart.good_id){
+        newArr.forEach(item => {
+          that.data.quotationInfo.forEach(cart => {
+            if (item.id == cart.good_id) {
               item.isAddCart = true;
-            }else{
+            } else {
               item.isAddCart = false;
             }
           })
@@ -310,7 +348,7 @@ Page({
               if (item.id == data.good_id) {
                 that.setData({
                   showAddImg: false
-                },()=>{
+                }, () => {
                   that.shopList();
                 })
               }
@@ -335,7 +373,7 @@ Page({
     })
   },
 
-  noneEnoughPeople(){
+  noneEnoughPeople() {
 
   }
 })

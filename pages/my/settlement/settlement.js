@@ -7,7 +7,8 @@ Page({
    */
   data: {
     imgUrl: "",
-    settlmentInfo: ""
+    settlmentInfo: [],
+    settlmentObj:""
   },
 
   //结算单列表
@@ -19,13 +20,25 @@ Page({
     }
     app.xhr('GET', app.apiUrl.orderList, item, '', (res) => {
       if (res.data.code == 0) {
+        let items = res.data.data
+        if (items.good != undefined && items.good != null && items.good != '') {
+          let newArr = res.data.data.good.map(item => {
+            item.own_spec = item.own_spec.substr(1);
+            item.own_spec = item.own_spec.substr(0, item.own_spec.length - 1);
+            return item
+          });
+          that.setData({
+            settlmentInfo: newArr
+          })
+          console.log("777888", newArr)
+        }
         that.setData({
-          settlmentInfo: res.data.data
+          settlmentObj: items
         })
       }
     })
   },
-  
+
   onLoad: function(options) {
     this.orderInfo();
     this.setData({

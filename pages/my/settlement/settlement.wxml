@@ -1,6 +1,6 @@
 <view class="container">
   <view class="box">
-    <view class="item" wx:for="{{settlmentInfo.good}}" wx:key="index">
+    <view class="item" wx:for="{{settlmentInfo}}" wx:key="index">
       <view class="shopImgs">
         <image src="{{item.good_img}}"></image>
       </view>
@@ -34,24 +34,24 @@
     <view class="monBottomBox">
       <view class="flexBox">
         <view class="bottomLeftFont">报价金额：</view>
-        <view class="bottomMoney">￥{{settlmentInfo.total_amount}}</view>
+        <view class="bottomMoney">￥{{settlmentObj.total_amount}}</view>
       </view>
       <view class="flexBox">
         <view class="bottomLeftFont">未付金额：</view>
-        <view class="bottomMoneyWei">￥{{settlmentInfo.not_paid_amount}}</view>
+        <view class="bottomMoneyWei">￥{{settlmentObj.not_paid_amount}}</view>
       </view>
       <view class="flexBox">
         <view class="bottomLeftFont">已付金额：</view>
-        <view class="bottomMoney">￥{{settlmentInfo.paid_amount}}</view>
+        <view class="bottomMoney">￥{{settlmentObj.paid_amount}}</view>
       </view>
     </view>
 
 
 
-    <view class="foot-btn-group">
+    <!-- <view class="foot-btn-group">
       <button class="item-btn left-btn">验收</button>
       <button class="item-btn right-btn">取消</button>
-    </view>
+    </view> -->
 
 
 

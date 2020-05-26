@@ -67,7 +67,7 @@
                 <text class="money-rmb">¥</text>{{item.selling_total_price}}</view>
               <image lazy-load="true" src="{{servenImg + 'product_add.png'}}" class="product-handle" bindtap="addCartNum" wx:if="{{!item.isAddCart && item.is_multi_specification == 0}}" data-id="{{item}}"></image>
               <view class="specificationFont" bindtap="showSpecificationModel" data-item="{{item}}" wx:if="{{item.is_multi_specification == 1}}">多规格</view>
-              <image lazy-load="true" src="{{servenImg + 'product_del.png'}}" class="product-handle" bindtap="reduceCartNum" wx:if="{{item.isAddCart}}" data-id="index"></image>
+              <image lazy-load="true" src="{{servenImg + 'product_del.png'}}" class="product-handle" bindtap="delShopListCart" wx:if="{{item.isAddCart}}" data-id="{{item}}" ></image>
             </view>
           </view>
         </view>
@@ -102,7 +102,7 @@
         <text>13434124520</text>
         <text class="order-money"><text class="order-rmb">¥</text>{{quotationObj.order_total_price == ''|| quotationObj.order_total_price == undefined || quotationObj.order_total_price == null? 0 : quotationObj.order_total_price}}</text>
       </view>
-      <view class="lower-money lower-plact-order">
+      <view class="lower-money lower-plact-order" bindtap="gotoQuotation">
         去下单
       </view>
     </view>
@@ -155,7 +155,7 @@
 
 
   <!-- 弹窗--选好了 -->
-  <!-- <view class="selsect-norms" wx:if="{{showCartModel}}">
+  <view class="selsect-norms" wx:if="{{showCartModelType}}">
     <view class="product">
       <view class="pic">
         <image src="{{shopModelList.url}}"></image>
@@ -183,7 +183,7 @@
       <view class="selection-list" wx:for="{{templateList}}" wx:for-item="item" wx:for-index="key" wx:key="index">
         <view class="title">{{key}}</view>
         <view class="list">
-          <view class="{{changeIndex === index ? 'item cur' : 'item' }}" wx:for="{{item}}" data-item="{{items}}" wx:for-item="items" wx:key="{{index}}" data-id="{{index}}" bindtap="changeType">{{items}}</view>
+          <view class="{{changeIndex === index ? 'item cur' : 'item' }}" wx:for="{{item}}" data-item="{{items}}" wx:for-item="items" wx:key="index" data-id="{{index}}" bindtap="changeType">{{items}}</view>
         </view>
       </view>
 
@@ -192,11 +192,11 @@
     <view class="have-chosen-box" bindtap="addCartNum" data-id="{{shopModelList}}">
       <button class="have-chosen-btn">选好了</button>
     </view>
-  </view> -->
+  </view>
 
   <view class="black-background" wx:if="{{showCartModel}}" bindtap="hideModel"></view>
 
 
 </view>
-<!-- 黑色背景
-  <view class="black-background" wx:if="{{showCartModel}}" bindtap="hideModel"></view> -->
+<!-- 多规格 黑色背景 -->
+<view class="black-background" wx:if="{{showCartModelType}}" bindtap="hideTypeModel"></view>
