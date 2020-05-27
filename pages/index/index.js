@@ -200,7 +200,7 @@ Page({
 
   // 规格数据获取
   showSpecificationModel: function(e) {
-    let that = this
+    let that = this;
     let modifyTmep = JSON.parse(e.currentTarget.dataset.item.spec_template);
     Object.keys(modifyTmep).forEach(function(key) {
       for (let i in modifyTmep) {
@@ -209,32 +209,36 @@ Page({
         })
       }
     });
+
     that.setData({
       showCartModelType: true,
       shopModelList: e.currentTarget.dataset.item,
       templateList: modifyTmep,
     },()=>{
+      let obj = {};
       let id = storage.get_s("showDataObj");
-      console.log(id)
-      // let items = {
-      //   community_id:id.community_id,
-      //   house_type_id:id.house_id,
-      //   sku:
-      //   product_spu_id
-      // }
 
+      for(let [key,item] of Object.entries(modifyTmep)){
+        obj[key] = item[0];
+      }
 
-      // app.xhr('GET', app.apiUrl.commoditySku, item, '', (res) => {
-      //   if (res.data.code == 0) {
-      //     that.setData({
-      //       tabList: res.data.data,
-      //       leftTabActived: res.data.data[0].id
-      //     })
-      //     this.shopList();
-      //   }
-      // })
-      // console.log(that.data.shopModelList);
-      console.log(that.data.templateList);
+      let items = {
+        community_id:id.community_id,
+        house_type_id:id.house_id,
+        sku:JSON.stringify(obj),
+        product_spu_id:e.currentTarget.dataset.item.id
+      };
+
+      app.xhr('GET', app.apiUrl.commoditySku, items, '', (res) => {
+        let resOjb = res.data.data;
+        resOjb.own_spec = resOjb.own_spec.substr(1);
+        resOjb.own_spec = resOjb.own_spec.substr(0, resOjb.own_spec.length - 1);
+        if (res.data.code == 0) {
+          that.setData({
+            shopModelList: resOjb
+          })
+        }
+      })
     })
   },
 

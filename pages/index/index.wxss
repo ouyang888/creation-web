@@ -534,7 +534,6 @@ button:not([size='mini']) {
   min-width: 150rpx;
   height: 150rpx;
   border-radius: 10rpx;
-  background: #ff2522;
   margin-right: 20rpx;
 }
 
