@@ -161,19 +161,19 @@
   <view class="selsect-norms" wx:if="{{showCartModelType}}">
     <view class="product">
       <view class="pic">
-        <image src="{{shopModelList.url}}"></image>
+        <image src="{{shopModelList.image_url}}"></image>
       </view>
       <view class="detail">
         <view class="title">
           <view class="name">{{shopModelList.name}}</view>
           <view class="clear">
-            <image class="list-clear" src="{{servenImg + 'order_list_clear.png'}}"></image>
+            <image class="list-clear" src="{{shopModelList.image_url}}}"></image>
             清空
           </view>
         </view>
 
         <view class="yisuan">
-          已选：{{selected}}
+          已选：{{shopModelList.own_spec}}
         </view>
 
         <view class="money">
