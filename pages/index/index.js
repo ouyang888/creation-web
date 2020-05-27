@@ -22,7 +22,8 @@ Page({
     changeIndex: 0,
     selected: "",
     animationData: {},
-    showCartModelType: false
+    showCartModelType: false,
+    addressData:[]
   },
 
   //去下单按钮
@@ -47,6 +48,8 @@ Page({
       }
     })
   },
+
+ 
 
   //点击增加符号或选规格添加到购物车
   addCartNum: function(e) {
@@ -269,6 +272,7 @@ Page({
   },
   onLoad: function() {
     let shopdata = storage.get_s("showDataObj");
+    let list = storage.get_s("token")
     wx.setNavigationBarTitle({
       title: shopdata.address
     })
@@ -281,6 +285,30 @@ Page({
         url: '../../pages/login/login',
       })
     }
+    //获取是否只有一个地址
+  
+     
+      let item = {
+        access_token: list.access_token
+      }
+      app.xhr('GET', app.apiUrl.addressList, item, '', (res) => {
+        if (res.data.code === 0) {
+          this.setData({
+            addressData: res.data.data
+          },()=>{
+            if (this.data.addressData.length > 1) {
+              wx.navigateTo({
+                url: '../my/adress/adress'
+              })
+            }
+          })
+        }
+      })
+   
+
+
+
+   
   },
 
   //跳转商品详情页
