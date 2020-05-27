@@ -182,10 +182,13 @@
       </view>
     </view>
     <scroll-view scroll-y="true" scroll-with-animation="true" class="material-selection-box">
-      <view class="selection-list" wx:for="{{templateList}}" wx:for-item="item" wx:for-index="key" wx:key="index">
-        <view class="title">{{key}}</view>
+      <view class="selection-list" wx:for="{{templateList}}" wx:for-item="item"  wx:key="index" wx:for-index="fuindex">
+        <view class="title">{{fuindex}}</view>
         <view class="list">
-          <view class="{{changeIndex === index ? 'item cur' : 'item' }}" wx:for="{{item}}" data-item="{{items}}" wx:for-item="items" wx:key="index" data-id="{{index}}" bindtap="changeType">
+          <!-- <view class="{{changeIndex === index ? 'item cur' : 'item' }}" wx:for="{{item}}" data-item="{{items}}" wx:for-item="items" wx:key="index" data-id="{{index}}" bindtap="changeType">
+            {{items}}
+          </view> -->
+            <view class="item{{item.oflag ? 'item cur' : ''}}" wx:for="{{item}}" data-item="{{items}}"  wx:for-index='index1' wx:for-item="items" bindtap='ChangColor' wx:key="index" data-in='{{index}}' data-index='{{index1}}' >
             {{items}}
           </view>
         </view>

@@ -2,13 +2,9 @@
   "pages": [
     "pages/index/index",
     "pages/my/quotation/quotation",
-
     "pages/my/adressSwitch/adressSwitch",
-
     "pages/my/adress/adress",
-
     "pages/my/my",
-
     "pages/my/settlement/settlement",
     "pages/login/login",
     "pages/my/adressLocation/adressLocation",
