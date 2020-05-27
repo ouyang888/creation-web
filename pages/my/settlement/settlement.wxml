@@ -14,7 +14,7 @@
           </view>
           <view class="moneyBox">
             <view class="product-size-name">{{item.own_spec}}</view>
-            <view class="money">￥{{item.good_price}}</view>
+            <view class="money">￥{{item.good_price}}.00</view>
           </view>
           <view class="product-type-list">
             <view style="padding-right:10rpx;">数量：{{item.good_num}}</view>
@@ -25,24 +25,18 @@
       </view>
     </view>
 
-
-
-
-
-
-
     <view class="monBottomBox">
       <view class="flexBox">
         <view class="bottomLeftFont">报价金额：</view>
-        <view class="bottomMoney">￥{{settlmentObj.total_amount}}</view>
+        <view class="bottomMoney">￥{{settlmentObj.total_amount}}.00</view>
       </view>
       <view class="flexBox">
         <view class="bottomLeftFont">未付金额：</view>
-        <view class="bottomMoneyWei">￥{{settlmentObj.not_paid_amount}}</view>
+        <view class="bottomMoneyWei">￥{{settlmentObj.not_paid_amount}}.00</view>
       </view>
       <view class="flexBox">
         <view class="bottomLeftFont">已付金额：</view>
-        <view class="bottomMoney">￥{{settlmentObj.paid_amount}}</view>
+        <view class="bottomMoney">￥{{settlmentObj.paid_amount}}.00</view>
       </view>
     </view>
 

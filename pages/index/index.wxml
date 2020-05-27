@@ -65,7 +65,7 @@
             <view class="product-money">
               <view class="money-num">
                 <block wx:if="{{item.selling_total_price !==null}}">
-                  <text class="money-rmb">¥</text>{{item.selling_total_price}}
+                  <text class="money-rmb">¥</text>{{item.selling_total_price}}.00
                 </block>
               </view>
               <image lazy-load="true" src="{{servenImg + 'product_add.png'}}" class="product-handle" bindtap="addCartNum" wx:if="{{!item.isAddCart && item.is_multi_specification == 0}}" data-id="{{item}}"></image>
@@ -94,7 +94,7 @@
         <text>13434124520</text>
       </view>
       <view class="lower-money">
-        <text class="lower-rmb">¥</text>{{quotationObj.order_total_price == ''|| quotationObj.order_total_price == undefined || quotationObj.order_total_price == null? 0 : quotationObj.order_total_price}}
+        <text class="lower-rmb">¥</text>{{quotationObj.order_total_price == ''|| quotationObj.order_total_price == undefined || quotationObj.order_total_price == null? 0 : quotationObj.order_total_price}}.00
       </view>
     </view>
 
@@ -103,7 +103,7 @@
       <view class="lower-text order">
         <image mode="aspectFill" lazy-load="true" src="{{servenImg + 'icon_phone.png'}}" class="lower-icon-phone"></image>
         <text>13434124520</text>
-        <text class="order-money"><text class="order-rmb">¥</text>{{quotationObj.order_total_price == ''|| quotationObj.order_total_price == undefined || quotationObj.order_total_price == null? 0 : quotationObj.order_total_price}}</text>
+        <text class="order-money"><text class="order-rmb">¥</text>{{quotationObj.order_total_price == ''|| quotationObj.order_total_price == undefined || quotationObj.order_total_price == null? 0 : quotationObj.order_total_price}}.00</text>
       </view>
       <view class="lower-money lower-plact-order" bindtap="gotoQuotation">
         去下单
@@ -144,7 +144,7 @@
               </view> -->
               <view class="goods-money">
                 <view class="money">
-                  <text class="rmb">¥</text>{{item.price}}</view>
+                  <text class="rmb">¥</text>{{item.price}}.00</view>
                 <view class="goods-handle">
                   <image lazy-load="true" src="{{servenImg + 'product_del.png'}}" bindtap="delCatrShop" data-id="{{item}}" class="product-handle"></image>
                 </view>
@@ -177,7 +177,7 @@
         </view>
 
         <view class="money">
-          <text class="rmb">¥</text>{{shopModelList.selling_total_price}}
+          <text class="rmb">¥</text>{{shopModelList.selling_total_price}}.00
         </view>
       </view>
     </view>

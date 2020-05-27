@@ -95,5 +95,6 @@ App({
     commoditySku: "/api/user/commodity/sku", //获取sku详情
     cartDel: "/api/user/cart/del", //购物车删除单个商品
     profileList:"/api/user/profile/list",//获取用户列表信息
+    orderCreate:"/api/user/order/create",//创建订单
   }
 })
