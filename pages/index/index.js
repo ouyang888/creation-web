@@ -23,40 +23,11 @@ Page({
     selected: "",
     animationData: {},
     showCartModelType: false,
-    addressData: [],
 
-    ohide: false,
-    num: 0,
-    NUM: 0,
-    properties: '',
-    oflag: false,
-    count: 1,
-    cart: false
-  },
-
-
-  ChangColor: function (e) {
-    // console.log(e.currentTarget.dataset)
-    // 规格的index
-    let that = this
-    let ind = e.currentTarget.dataset.index;
-    // 颜色的index
-    let index = e.currentTarget.dataset.index;
-    console.log(e)
-    // 利用规格的index值给当前渲染在页面的总源头数据的每个儿子
-    
-    Object.keys(that.data.templateList).forEach(function (key) {
-      for (var i in that.data.templateList) {
-        that.data.templateList[i].oflag = false;
-        console.log("111", that.data.templateList[i])
-      }
-    })
-    // 让当前点击的页面的总源头数据下的儿子的index元素都处于open的状态
-    that.data.templateList[ind][i].oflag  = true;
-    // this.setData 设置数据
-    this.setData({
-      templateList: this.data.templateList
-    })
+    //当前选中的sku值
+    activeSku:{},
+    //当前选中的skuID
+    activeSkuId:""
   },
 
   //去下单按钮
@@ -68,22 +39,47 @@ Page({
 
   //点击切换规格
   changeType: function(e) {
-    console.log("11111",e)
-    let that = this
-    this.setData({
-      changeIndex: e.currentTarget.dataset.id
-    })
-    let typeJson = ""
-    Object.keys(that.data.templateList).forEach(function(key) {
-      for (var i in that.data.templateList) {
-        that.setData({
-          selected: key + ':' + that.data.templateList[i][that.data.changeIndex]
+   let that = this
+    let activeSku = this.data.activeSku;
+    let obj = {};
+    for(let [key,item] of Object.entries(this.data.templateList)){
+      if(item.includes(e.currentTarget.dataset.item)){
+        item.forEach(data=>{
+          if(data === e.currentTarget.dataset.item){
+            obj[key] = data;
+          }
         })
       }
-    })
+    }
+    for(let [key,item] of Object.entries(activeSku)){
+      for(let [cate,data] of Object.entries(obj)){
+        if(key===cate){
+          activeSku[key] = data;
+        }
+      }
+    }
+    let id = storage.get_s("showDataObj");
+
+    let items = {
+      community_id:id.community_id,
+      house_type_id:id.house_id,
+      sku:JSON.stringify(activeSku),
+      product_spu_id:this.data.activeSkuId
+    };
+
+    app.xhr('GET', app.apiUrl.commoditySku, items, '', (res) => {
+      if(res.data.data){
+        let resOjb = res.data.data;
+        resOjb.own_spec = resOjb.own_spec.substr(1);
+        resOjb.own_spec = resOjb.own_spec.substr(0, resOjb.own_spec.length - 1);
+        if (res.data.code == 0) {
+          that.setData({
+            shopModelList: resOjb
+          })
+        }
+      }
+    });
   },
-
-
 
   //点击增加符号或选规格添加到购物车
   addCartNum: function(e) {
@@ -248,19 +244,24 @@ Page({
       showCartModelType: true,
       shopModelList: e.currentTarget.dataset.item,
       templateList: modifyTmep,
-    }, () => {
+    },()=>{
       let obj = {};
       let id = storage.get_s("showDataObj");
 
-      for (let [key, item] of Object.entries(modifyTmep)) {
+      for(let [key,item] of Object.entries(modifyTmep)){
         obj[key] = item[0];
       }
 
+      this.setData({
+        activeSku:obj,
+        activeSkuId:e.currentTarget.dataset.item.id
+      });
+
       let items = {
-        community_id: id.community_id,
-        house_type_id: id.house_id,
-        sku: JSON.stringify(obj),
-        product_spu_id: e.currentTarget.dataset.item.id
+        community_id:id.community_id,
+        house_type_id:id.house_id,
+        sku:JSON.stringify(obj),
+        product_spu_id:e.currentTarget.dataset.item.id
       };
 
       app.xhr('GET', app.apiUrl.commoditySku, items, '', (res) => {
@@ -301,16 +302,15 @@ Page({
     this.category();
     this.cartInfo();
   },
-  onHide: function() {
+  onHide:function(){
     this.setData({
-      showCart: false,
-      showCartModel: false,
-      showCartModelType: false,
+      showCart:false,
+      showCartModel:false,
+      showCartModelType:false,
     });
   },
   onLoad: function() {
     let shopdata = storage.get_s("showDataObj");
-    let list = storage.get_s("token")
     wx.setNavigationBarTitle({
       title: shopdata.address
     })
@@ -323,28 +323,6 @@ Page({
         url: '../../pages/login/login',
       })
     }
-    //获取是否只有一个地址
-    let item = {
-      access_token: list.access_token
-    }
-    app.xhr('GET', app.apiUrl.addressList, item, '', (res) => {
-      if (res.data.code === 0) {
-        this.setData({
-          addressData: res.data.data
-        }, () => {
-          if (this.data.addressData.length > 1) {
-            wx.navigateTo({
-              url: '../my/adress/adress'
-            })
-          }
-        })
-      }
-    })
-
-
-
-
-
   },
 
   //跳转商品详情页
