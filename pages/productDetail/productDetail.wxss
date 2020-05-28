@@ -1,6 +1,10 @@
 /* pages/productDetail/productDetail.wxss */
-.product-pic .item {
+.product-pic  {
   height: 500rpx;
+}
+
+.product-pic .item{
+  height: 100%;
 }
 
 .product-title {

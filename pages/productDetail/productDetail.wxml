@@ -2,9 +2,9 @@
 	<!--轮播图 -->
 	<swiper autoplay="true" interval="3000" duration="500" circular="true" class="product-pic">
 		<block>
-			<swiper-item>
+			<swiper-item style="width: 500px;">
 				<view class="item">
-          <image src="{{detailsList.url}}"></image>
+          <image style="width: 100%;height: 100%;" src="{{detailsList.url}}"></image>
         </view>
 			</swiper-item>
 			<!-- <swiper-item>
