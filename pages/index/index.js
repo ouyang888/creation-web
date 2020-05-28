@@ -22,7 +22,12 @@ Page({
     changeIndex: 0,
     selected: "",
     animationData: {},
-    showCartModelType: false
+    showCartModelType: false,
+
+    //当前选中的sku值
+    activeSku:{},
+    //当前选中的skuID
+    activeSkuId:""
   },
 
   //去下单按钮
@@ -34,18 +39,46 @@ Page({
 
   //点击切换规格
   changeType: function(e) {
-    let that = this
-    this.setData({
-      changeIndex: e.currentTarget.dataset.id
-    })
-    let typeJson = ""
-    Object.keys(that.data.templateList).forEach(function(key) {
-      for (var i in that.data.templateList) {
-        that.setData({
-          selected: key + ':' + that.data.templateList[i][that.data.changeIndex]
+   let that = this
+    let activeSku = this.data.activeSku;
+    let obj = {};
+    for(let [key,item] of Object.entries(this.data.templateList)){
+      if(item.includes(e.currentTarget.dataset.item)){
+        item.forEach(data=>{
+          if(data === e.currentTarget.dataset.item){
+            obj[key] = data;
+          }
         })
       }
-    })
+    }
+    for(let [key,item] of Object.entries(activeSku)){
+      for(let [cate,data] of Object.entries(obj)){
+        if(key===cate){
+          activeSku[key] = data;
+        }
+      }
+    }
+    let id = storage.get_s("showDataObj");
+
+    let items = {
+      community_id:id.community_id,
+      house_type_id:id.house_id,
+      sku:JSON.stringify(activeSku),
+      product_spu_id:this.data.activeSkuId
+    };
+
+    app.xhr('GET', app.apiUrl.commoditySku, items, '', (res) => {
+      if(res.data.data){
+        let resOjb = res.data.data;
+        resOjb.own_spec = resOjb.own_spec.substr(1);
+        resOjb.own_spec = resOjb.own_spec.substr(0, resOjb.own_spec.length - 1);
+        if (res.data.code == 0) {
+          that.setData({
+            shopModelList: resOjb
+          })
+        }
+      }
+    });
   },
 
   //点击增加符号或选规格添加到购物车
@@ -218,6 +251,11 @@ Page({
       for(let [key,item] of Object.entries(modifyTmep)){
         obj[key] = item[0];
       }
+
+      this.setData({
+        activeSku:obj,
+        activeSkuId:e.currentTarget.dataset.item.id
+      });
 
       let items = {
         community_id:id.community_id,

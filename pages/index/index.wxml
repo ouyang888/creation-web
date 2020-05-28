@@ -185,7 +185,7 @@
       <view class="selection-list" wx:for="{{templateList}}" wx:for-item="item" wx:for-index="key" wx:key="index">
         <view class="title">{{key}}</view>
         <view class="list">
-          <view class="{{changeIndex === index ? 'item cur' : 'item' }}" wx:for="{{item}}" data-item="{{items}}" wx:for-item="items" wx:key="index" data-id="{{index}}" bindtap="changeType">
+          <view class="{{changeIndex === index ? 'item cur' : 'item' }}" wx:for="{{item}}" data-item="{{items}}" wx:for-item="items" wx:key="index" bindtap="changeType">
             {{items}}
           </view>
         </view>
