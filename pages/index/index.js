@@ -83,7 +83,7 @@ Page({
       if (res.data.data) {
         let resOjb = res.data.data;
 
-     
+
 
         let newObj2 = JSON.parse(res.data.data.own_spec)
         // Object.keys(newObj1).forEach(function (key) {
@@ -135,25 +135,26 @@ Page({
     let token = storage.get_s("token")
     let shopdata = storage.get_s("showDataObj")
     let msg = ""
-    let typeJson = ""
-    Object.keys(that.data.templateList).forEach(function(key) {
-      for (var i in that.data.templateList) {
-        typeJson = '{' + JSON.stringify(key) + ":" + JSON.stringify(that.data.templateList[i][that.data.changeIndex]) + '}'
-      }
-    })
+    let typeJson = `{${e.currentTarget.dataset.id.own_spec}}`;
+    // Object.keys(that.data.templateList).forEach(function(key) {
+    //   for (var i in that.data.templateList) {
+    //     typeJson = '{' + JSON.stringify(key) + ":" + JSON.stringify(that.data.templateList[i][that.data.changeIndex]) + '}'
+    //   }
+    // })
 
     if (e.currentTarget.dataset.id.is_multi_specification == 0) {
       msg = "[]"
     } else {
-      msg = JSON.parse(typeJson)
+      msg = typeJson
     }
     let skuList = {
       access_token: token.access_token,
       community_id: shopdata.community_id,
       house_type_id: shopdata.house_id,
-      product_spu_id: e.currentTarget.dataset.id.id,
+      product_spu_id: this.data.activeSkuId,
       sku: msg
     }
+
     app.xhr('GET', app.apiUrl.commoditySku, skuList, '', (res) => {
       if (res.data.code == 0) {
         let items = {
@@ -255,8 +256,6 @@ Page({
         that.setData({
           quotationObj: items
         })
-        // console.log(newArr);
-
       }
     })
   },
@@ -279,6 +278,7 @@ Page({
   // 规格数据获取
   showSpecificationModel: function(e) {
     let that = this;
+    let token = storage.get_s("token")
     let modifyTmep = JSON.parse(e.currentTarget.dataset.item.spec_template);
     Object.keys(modifyTmep).forEach(function(key) {
       for (let i in modifyTmep) {
@@ -306,6 +306,7 @@ Page({
       });
 
       let items = {
+        access_token: token.access_token,
         community_id: id.community_id,
         house_type_id: id.house_id,
         sku: JSON.stringify(obj),
