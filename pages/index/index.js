@@ -23,12 +23,12 @@ Page({
     selected: "",
     animationData: {},
     showCartModelType: false,
-    newObj1Key:"",
+    newObj1Key: "",
     //当前选中的sku值
     activeSku: {},
     //当前选中的skuID
     activeSkuId: "",
-    newObj1Value:""
+    newObj1Value: ""
   },
 
   //去下单按钮
@@ -40,8 +40,6 @@ Page({
 
   //点击切换规格
   changeType: function(e) {
-    
-    // console.log("content", content)
     let that = this
     let activeSku = this.data.activeSku;
     let obj = {};
@@ -69,14 +67,21 @@ Page({
       sku: JSON.stringify(activeSku),
       product_spu_id: this.data.activeSkuId
     };
-    
 
-  
+
+    let newObj1 = JSON.parse(items.sku)
+    let newArrValue = Object.values(newObj1)
+    that.setData({
+      newObj1Key: newArrValue[1],
+      newObj1Value: newArrValue[0]
+    }, () => {
+      // console.log("newObj1Key", that.data.newObj1Key)
+      // console.log("newObj1Value", that.data.newObj1Value)
+    })
 
     app.xhr('GET', app.apiUrl.commoditySku, items, '', (res) => {
       if (res.data.data) {
         let resOjb = res.data.data;
-        let newObj1 = JSON.parse(items.sku)
         let newObj2 = JSON.parse(res.data.data.own_spec)
         // Object.keys(newObj1).forEach(function (key) {
         //   that.setData({
@@ -88,14 +93,7 @@ Page({
         //     })
         //   }
         // })
-        let newArrValue = Object.values(newObj1)
-        that.setData({
-          newObj1Key: newArrValue[1],
-          newObj1Value: newArrValue[0]
-        },()=>{
-          console.log("newObj1Key", that.data.newObj1Key)
-          console.log("newObj1Value", that.data.newObj1Value)
-        })
+
         // for (var i in newArrValue){
         //   var name = 'arr[' + i + '].name';
         //   that.setData({
@@ -107,9 +105,9 @@ Page({
         // console.log("newArrValue", newArrValue)
         // console.log("111", newArrValue[1])
         // console.log("222", newArrValue[0])
-       
+
         // Object.keys(JSON.parse(res.data.data.own_spec)).forEach(function (key1) {
-         
+
         //   for (var i in newObj2) {
         //     that.setData({
         //       newObj1Value: newObj2[i]
