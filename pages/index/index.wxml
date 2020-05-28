@@ -70,7 +70,7 @@
               </view>
               <image lazy-load="true" src="{{servenImg + 'product_add.png'}}" class="product-handle" bindtap="addCartNum" wx:if="{{!item.isAddCart && item.is_multi_specification == 0}}" data-id="{{item}}"></image>
               <view class="specificationFont" bindtap="showSpecificationModel" data-item="{{item}}" wx:if="{{item.is_multi_specification == 1}}">多规格</view>
-              <image lazy-load="true" src="{{servenImg + 'product_del.png'}}" class="product-handle" bindtap="delShopListCart" wx:if="{{item.isAddCart}}" data-id="{{item}}" ></image>
+              <image lazy-load="true" src="{{servenImg + 'product_del.png'}}" class="product-handle" bindtap="delShopListCart" wx:if="{{item.isAddCart}}" data-id="{{item}}"></image>
             </view>
           </view>
         </view>
@@ -182,10 +182,10 @@
       </view>
     </view>
     <scroll-view scroll-y="true" scroll-with-animation="true" class="material-selection-box">
-      <view class="selection-list" wx:for="{{templateList}}" wx:for-item="item" wx:for-index="key" wx:key="index">
-        <view class="title">{{key}}</view>
+      <view class="selection-list" wx:for="{{templateList}}" wx:for-item="item" wx:for-index="keyData" wx:key="index">
+        <view class="title">{{keyData}}</view>
         <view class="list">
-          <view class="{{changeIndex === index ? 'item cur' : 'item' }}" wx:for="{{item}}" data-item="{{items}}" wx:for-item="items" wx:key="index" bindtap="changeType">
+          <view class="{{newObj1Value == items || newObj1Key == items ? 'item cur' : 'item'}}" wx:for="{{item}}" data-item="{{items}}" data-list="{{shopModelList}}" wx:for-item="items" wx:key="index" bindtap="changeType">
             {{items}}
           </view>
         </view>

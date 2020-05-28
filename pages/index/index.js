@@ -23,11 +23,12 @@ Page({
     selected: "",
     animationData: {},
     showCartModelType: false,
-
+    newObj1Key:"",
     //当前选中的sku值
-    activeSku:{},
+    activeSku: {},
     //当前选中的skuID
-    activeSkuId:""
+    activeSkuId: "",
+    newObj1Value:""
   },
 
   //去下单按钮
@@ -39,21 +40,23 @@ Page({
 
   //点击切换规格
   changeType: function(e) {
-   let that = this
+    
+    // console.log("content", content)
+    let that = this
     let activeSku = this.data.activeSku;
     let obj = {};
-    for(let [key,item] of Object.entries(this.data.templateList)){
-      if(item.includes(e.currentTarget.dataset.item)){
-        item.forEach(data=>{
-          if(data === e.currentTarget.dataset.item){
+    for (let [key, item] of Object.entries(this.data.templateList)) {
+      if (item.includes(e.currentTarget.dataset.item)) {
+        item.forEach(data => {
+          if (data === e.currentTarget.dataset.item) {
             obj[key] = data;
           }
         })
       }
     }
-    for(let [key,item] of Object.entries(activeSku)){
-      for(let [cate,data] of Object.entries(obj)){
-        if(key===cate){
+    for (let [key, item] of Object.entries(activeSku)) {
+      for (let [cate, data] of Object.entries(obj)) {
+        if (key === cate) {
           activeSku[key] = data;
         }
       }
@@ -61,15 +64,59 @@ Page({
     let id = storage.get_s("showDataObj");
 
     let items = {
-      community_id:id.community_id,
-      house_type_id:id.house_id,
-      sku:JSON.stringify(activeSku),
-      product_spu_id:this.data.activeSkuId
+      community_id: id.community_id,
+      house_type_id: id.house_id,
+      sku: JSON.stringify(activeSku),
+      product_spu_id: this.data.activeSkuId
     };
+    
+
+  
 
     app.xhr('GET', app.apiUrl.commoditySku, items, '', (res) => {
-      if(res.data.data){
+      if (res.data.data) {
         let resOjb = res.data.data;
+        let newObj1 = JSON.parse(items.sku)
+        let newObj2 = JSON.parse(res.data.data.own_spec)
+        // Object.keys(newObj1).forEach(function (key) {
+        //   that.setData({
+        //     newObj1Key:key
+        //   })
+        //   for (var i in newObj1){
+        //     that.setData({
+        //       newObj1Value: newObj1[i]
+        //     })
+        //   }
+        // })
+        let newArrValue = Object.values(newObj1)
+        that.setData({
+          newObj1Key: newArrValue[1],
+          newObj1Value: newArrValue[0]
+        },()=>{
+          console.log("newObj1Key", that.data.newObj1Key)
+          console.log("newObj1Value", that.data.newObj1Value)
+        })
+        // for (var i in newArrValue){
+        //   var name = 'arr[' + i + '].name';
+        //   that.setData({
+        //     [name]: newArrValue[i]
+        //   },()=>{
+        //     console.log("111",that.data.arr)
+        //   });
+        // }
+        // console.log("newArrValue", newArrValue)
+        // console.log("111", newArrValue[1])
+        // console.log("222", newArrValue[0])
+       
+        // Object.keys(JSON.parse(res.data.data.own_spec)).forEach(function (key1) {
+         
+        //   for (var i in newObj2) {
+        //     that.setData({
+        //       newObj1Value: newObj2[i]
+        //     })
+        //     console.log("newObj1", newObj2)
+        //   }
+        // })
         resOjb.own_spec = resOjb.own_spec.substr(1);
         resOjb.own_spec = resOjb.own_spec.substr(0, resOjb.own_spec.length - 1);
         if (res.data.code == 0) {
@@ -244,24 +291,24 @@ Page({
       showCartModelType: true,
       shopModelList: e.currentTarget.dataset.item,
       templateList: modifyTmep,
-    },()=>{
+    }, () => {
       let obj = {};
       let id = storage.get_s("showDataObj");
 
-      for(let [key,item] of Object.entries(modifyTmep)){
+      for (let [key, item] of Object.entries(modifyTmep)) {
         obj[key] = item[0];
       }
 
       this.setData({
-        activeSku:obj,
-        activeSkuId:e.currentTarget.dataset.item.id
+        activeSku: obj,
+        activeSkuId: e.currentTarget.dataset.item.id
       });
 
       let items = {
-        community_id:id.community_id,
-        house_type_id:id.house_id,
-        sku:JSON.stringify(obj),
-        product_spu_id:e.currentTarget.dataset.item.id
+        community_id: id.community_id,
+        house_type_id: id.house_id,
+        sku: JSON.stringify(obj),
+        product_spu_id: e.currentTarget.dataset.item.id
       };
 
       app.xhr('GET', app.apiUrl.commoditySku, items, '', (res) => {
@@ -302,11 +349,11 @@ Page({
     this.category();
     this.cartInfo();
   },
-  onHide:function(){
+  onHide: function() {
     this.setData({
-      showCart:false,
-      showCartModel:false,
-      showCartModelType:false,
+      showCart: false,
+      showCartModel: false,
+      showCartModelType: false,
     });
   },
   onLoad: function() {
