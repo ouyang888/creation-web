@@ -82,6 +82,9 @@ Page({
     app.xhr('GET', app.apiUrl.commoditySku, items, '', (res) => {
       if (res.data.data) {
         let resOjb = res.data.data;
+
+     
+
         let newObj2 = JSON.parse(res.data.data.own_spec)
         // Object.keys(newObj1).forEach(function (key) {
         //   that.setData({
@@ -311,6 +314,16 @@ Page({
 
       app.xhr('GET', app.apiUrl.commoditySku, items, '', (res) => {
         let resOjb = res.data.data;
+
+        let newResOjb1 = JSON.parse(resOjb.own_spec)
+        let newArrValueOwnSpec = Object.values(newResOjb1)
+        that.setData({
+          newObj1Key: newArrValueOwnSpec[1],
+          newObj1Value: newArrValueOwnSpec[0]
+        }, () => {
+          // console.log("newObj1Key", that.data.newObj1Key)
+          // console.log("newObj1Value", that.data.newObj1Value)
+        })
         resOjb.own_spec = resOjb.own_spec.substr(1);
         resOjb.own_spec = resOjb.own_spec.substr(0, resOjb.own_spec.length - 1);
         if (res.data.code == 0) {
